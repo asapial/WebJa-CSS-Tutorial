@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 18: Colors and Gradients</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+        }
+        .controls {
+            flex: 2;
+            padding: 20px;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+            padding: 20px;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .example-box {
+            width: 100px;
+            height: 100px;
+            background-color: #ff5722;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="color-gradient-topic">Color & Gradient Topic</label>
+                <select id="color-gradient-topic" onchange="updateExample()">
+                    <option value="hex">Hexadecimal Colors</option>
+                    <option value="rgb">RGB Colors</option>
+                    <option value="rgba">RGBA Colors</option>
+                    <option value="hsl">HSL Colors</option>
+                    <option value="hsla">HSLA Colors</option>
+                    <option value="linear-gradient">Linear Gradients</option>
+                    <option value="radial-gradient">Radial Gradients</option>
+                </select>
+            </div>
+            <div class="control-group" id="hex-controls">
+                <label for="hex-color">Hex Color</label>
+                <input type="text" id="hex-color" value="#ff5722" onchange="updateExample()" />
+            </div>
+            <div class="control-group" id="rgb-controls">
+                <label for="rgb-color">RGB Color</label>
+                <input type="text" id="rgb-color" value="255, 87, 34" onchange="updateExample()" />
+            </div>
+            <div class="control-group" id="rgba-controls">
+                <label for="rgba-color">RGBA Color</label>
+                <input type="text" id="rgba-color" value="255, 87, 34, 0.8" onchange="updateExample()" />
+            </div>
+            <div class="control-group" id="hsl-controls">
+                <label for="hsl-color">HSL Color</label>
+                <input type="text" id="hsl-color" value="14, 100%, 53%" onchange="updateExample()" />
+            </div>
+            <div class="control-group" id="hsla-controls">
+                <label for="hsla-color">HSLA Color</label>
+                <input type="text" id="hsla-color" value="14, 100%, 53%, 0.8" onchange="updateExample()" />
+            </div>
+            <div class="control-group" id="linear-gradient-controls">
+                <label for="linear-gradient">Linear Gradient</label>
+                <input type="text" id="linear-gradient" value="to right, #ff5722, #4CAF50" onchange="updateExample()" />
+            </div>
+            <div class="control-group" id="radial-gradient-controls">
+                <label for="radial-gradient">Radial Gradient</label>
+                <input type="text" id="radial-gradient" value="circle, #ff5722, #4CAF50" onchange="updateExample()" />
+            </div>
+        </div>
+        <div class="output">
+            <div class="example-box" id="example-box"></div>
+        </div>
+        <div class="css-output" id="css-output">
+            <pre>
+.example-box {
+    background-color: #ff5722;
+}
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        function updateExample() {
+            const topic = document.getElementById('color-gradient-topic').value;
+            const hexColor = document.getElementById('hex-color').value;
+            const rgbColor = document.getElementById('rgb-color').value;
+            const rgbaColor = document.getElementById('rgba-color').value;
+            const hslColor = document.getElementById('hsl-color').value;
+            const hslaColor = document.getElementById('hsla-color').value;
+            const linearGradient = document.getElementById('linear-gradient').value;
+            const radialGradient = document.getElementById('radial-gradient').value;
+
+            document.getElementById('hex-controls').style.display = 'none';
+            document.getElementById('rgb-controls').style.display = 'none';
+            document.getElementById('rgba-controls').style.display = 'none';
+            document.getElementById('hsl-controls').style.display = 'none';
+            document.getElementById('hsla-controls').style.display = 'none';
+            document.getElementById('linear-gradient-controls').style.display = 'none';
+            document.getElementById('radial-gradient-controls').style.display = 'none';
+
+            const exampleBox = document.getElementById('example-box');
+            if (topic === 'hex') {
+                document.getElementById('hex-controls').style.display = 'block';
+                exampleBox.style.backgroundColor = hexColor;
+            } else if (topic === 'rgb') {
+                document.getElementById('rgb-controls').style.display = 'block';
+                exampleBox.style.backgroundColor = `rgb(${rgbColor})`;
+            } else if (topic === 'rgba') {
+                document.getElementById('rgba-controls').style.display = 'block';
+                exampleBox.style.backgroundColor = `rgba(${rgbaColor})`;
+            } else if (topic === 'hsl') {
+                document.getElementById('hsl-controls').style.display = 'block';
+                exampleBox.style.backgroundColor = `hsl(${hslColor})`;
+            } else if (topic === 'hsla') {
+                document.getElementById('hsla-controls').style.display = 'block';
+                exampleBox.style.backgroundColor = `hsla(${hslaColor})`;
+            } else if (topic === 'linear-gradient') {
+                document.getElementById('linear-gradient-controls').style.display = 'block';
+                exampleBox.style.background = `linear-gradient(${linearGradient})`;
+            } else if (topic === 'radial-gradient') {
+                document.getElementById('radial-gradient-controls').style.display = 'block';
+                exampleBox.style.background = `radial-gradient(${radialGradient})`;
+            }
+
+            // Update CSS Output
+            const cssOutput = document.getElementById('css-output');
+            cssOutput.innerHTML = `<pre>
+.example-box {
+    background-color: ${hexColor};
+    background-color: rgb(${rgbColor});
+    background-color: rgba(${rgbaColor});
+    background-color: hsl(${hslColor});
+    background-color: hsla(${hslaColor});
+    background: linear-gradient(${linearGradient});
+    background: radial-gradient(${radialGradient});
+}
+            </pre>`;
+        }
+
+        // Initialize with default values
+        updateExample();
+    </script>
+</body>
+</html>

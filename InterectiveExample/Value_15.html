@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 15: Advanced Responsive Design</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+        }
+        .controls {
+            flex: 2;
+            padding: 20px;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+            padding: 20px;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .flex-container, .grid-container, .framework-container, .responsive-images, .css-variables {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        .flex-item, .grid-item, .image-item {
+            width: 50px;
+            height: 50px;
+            background-color: #ff5722;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="responsive-topic">Responsive Design Topic</label>
+                <select id="responsive-topic" onchange="updateExample()">
+                    <option value="flexbox">Flexbox for Responsive Design</option>
+                    <option value="grid">Grid for Responsive Design</option>
+                    <option value="framework">CSS Frameworks (Bootstrap, Foundation)</option>
+                    <option value="images">Responsive Images</option>
+                    <option value="variables">CSS Variables (Custom Properties)</option>
+                </select>
+            </div>
+            <div class="control-group" id="flex-controls">
+                <label for="flex-direction">Flex Direction</label>
+                <select id="flex-direction" onchange="updateExample()">
+                    <option value="row">row</option>
+                    <option value="row-reverse">row-reverse</option>
+                    <option value="column">column</option>
+                    <option value="column-reverse">column-reverse</option>
+                </select>
+            </div>
+            <div class="control-group" id="grid-controls">
+                <label for="grid-template-columns">Grid Columns</label>
+                <input type="text" id="grid-template-columns" value="repeat(3, 1fr)" onchange="updateExample()" />
+            </div>
+            <div class="control-group" id="image-controls">
+                <label for="image-width">Image Width (%)</label>
+                <input type="text" id="image-width" value="100" onchange="updateExample()" />
+            </div>
+            <div class="control-group" id="variable-controls">
+                <label for="custom-property">Custom Property (CSS Variable)</label>
+                <input type="text" id="custom-property" value="20px" onchange="updateExample()" />
+            </div>
+        </div>
+        <div class="output">
+            <div class="flex-container" id="flex-container">
+                <div class="flex-item">1</div>
+                <div class="flex-item">2</div>
+                <div class="flex-item">3</div>
+            </div>
+            <div class="grid-container" id="grid-container">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+            </div>
+            <div class="framework-container" id="framework-container">
+                <!-- Framework Example (Bootstrap or Foundation) -->
+                <div class="flex-item">Framework</div>
+            </div>
+            <div class="responsive-images" id="responsive-images">
+                <img src="https://via.placeholder.com/150" id="image-item" class="image-item" alt="Responsive Image" />
+            </div>
+            <div class="css-variables" id="css-variables">
+                <div class="flex-item" style="--custom-prop: 20px;">Variable</div>
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            <pre>
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.image-item {
+    width: 100%;
+}
+.flex-item {
+    width: 50px;
+    height: 50px;
+    background-color: #ff5722;
+}
+:root {
+    --custom-prop: 20px;
+}
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        function updateExample() {
+            const responsiveTopic = document.getElementById('responsive-topic').value;
+            const flexDirection = document.getElementById('flex-direction').value;
+            const gridTemplateColumns = document.getElementById('grid-template-columns').value;
+            const imageWidth = document.getElementById('image-width').value;
+            const customProperty = document.getElementById('custom-property').value;
+
+            // Update display for different containers
+            document.getElementById('flex-container').style.display = 'none';
+            document.getElementById('grid-container').style.display = 'none';
+            document.getElementById('framework-container').style.display = 'none';
+            document.getElementById('responsive-images').style.display = 'none';
+            document.getElementById('css-variables').style.display = 'none';
+
+            document.getElementById('flex-controls').style.display = 'none';
+            document.getElementById('grid-controls').style.display = 'none';
+            document.getElementById('image-controls').style.display = 'none';
+            document.getElementById('variable-controls').style.display = 'none';
+
+            if (responsiveTopic === 'flexbox') {
+                document.getElementById('flex-container').style.display = 'flex';
+                document.getElementById('flex-container').style.flexDirection = flexDirection;
+                document.getElementById('flex-controls').style.display = 'block';
+            } else if (responsiveTopic === 'grid') {
+                document.getElementById('grid-container').style.display = 'grid';
+                document.getElementById('grid-container').style.gridTemplateColumns = gridTemplateColumns;
+                document.getElementById('grid-controls').style.display = 'block';
+            } else if (responsiveTopic === 'framework') {
+                document.getElementById('framework-container').style.display = 'flex';
+            } else if (responsiveTopic === 'images') {
+                document.getElementById('responsive-images').style.display = 'block';
+                document.getElementById('image-item').style.width = imageWidth + '%';
+                document.getElementById('image-controls').style.display = 'block';
+            } else if (responsiveTopic === 'variables') {
+                document.getElementById('css-variables').style.display = 'flex';
+                document.documentElement.style.setProperty('--custom-prop', customProperty);
+                document.getElementById('variable-controls').style.display = 'block';
+            }
+
+            // Update CSS Output
+            const cssOutput = document.getElementById('css-output');
+            cssOutput.innerHTML = `<pre>
+.flex-container {
+    display: flex;
+    flex-direction: ${flexDirection};
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: ${gridTemplateColumns};
+}
+.image-item {
+    width: ${imageWidth}%;
+}
+.flex-item {
+    width: 50px;
+    height: 50px;
+    background-color: #ff5722;
+}
+:root {
+    --custom-prop: ${customProperty};
+}
+            </pre>`;
+        }
+
+        // Initialize with default values
+        updateExample();
+    </script>
+</body>
+</html>

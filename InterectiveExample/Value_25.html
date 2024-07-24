@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 25: CSS Grid Advanced</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+            height: 80%;
+        }
+        .controls {
+            flex: 2;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 100%;
+            margin-right: 10px;
+        }
+        .css-output {
+            flex: 1;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 100%;
+            overflow: auto;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .control-group {
+            margin-bottom: 10px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .example-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        .example-box {
+            display: grid;
+            gap: 10px;
+            background-color: #ff5722;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .grid-item {
+            background-color: #ffcc00;
+            border: 1px solid #fff;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="auto-placement">Grid Auto Placement:</label>
+                <select id="auto-placement">
+                    <option value="grid-auto-flow: row;">Row</option>
+                    <option value="grid-auto-flow: column;">Column</option>
+                    <option value="grid-auto-flow: dense;">Dense</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="minmax">minmax():</label>
+                <input type="text" id="minmax" placeholder="e.g., minmax(100px, 1fr)">
+            </div>
+            <div class="control-group">
+                <label for="auto-fill">auto-fill:</label>
+                <input type="text" id="auto-fill" placeholder="e.g., repeat(auto-fill, minmax(100px, 1fr))">
+            </div>
+            <div class="control-group">
+                <label for="auto-fit">auto-fit:</label>
+                <input type="text" id="auto-fit" placeholder="e.g., repeat(auto-fit, minmax(100px, 1fr))">
+            </div>
+            <div class="control-group">
+                <label for="fractional-units">Fractional Units (fr):</label>
+                <input type="text" id="fractional-units" placeholder="e.g., 1fr 2fr">
+            </div>
+            <div class="control-group">
+                <label for="nested-grid">Nested Grid:</label>
+                <select id="nested-grid">
+                    <option value="none">None</option>
+                    <option value="grid">Nested Grid</option>
+                </select>
+            </div>
+        </div>
+        <div class="output">
+            <div class="example-container" id="example-container">
+                <div class="example-box" id="example-box">
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                </div>
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            <pre id="css-code"></pre>
+        </div>
+    </div>
+
+    <script>
+        const autoPlacement = document.getElementById('auto-placement');
+        const minmaxInput = document.getElementById('minmax');
+        const autoFillInput = document.getElementById('auto-fill');
+        const autoFitInput = document.getElementById('auto-fit');
+        const fractionalUnits = document.getElementById('fractional-units');
+        const nestedGrid = document.getElementById('nested-grid');
+        const exampleBox = document.getElementById('example-box');
+        const cssCode = document.getElementById('css-code');
+
+        function updateCSS() {
+            const autoPlacementVal = autoPlacement.value;
+            const minmaxVal = minmaxInput.value;
+            const autoFillVal = autoFillInput.value;
+            const autoFitVal = autoFitInput.value;
+            const fractionalUnitsVal = fractionalUnits.value;
+            const nestedGridVal = nestedGrid.value;
+
+            exampleBox.style.gridAutoFlow = autoPlacementVal.split(': ')[1].replace(';', '');
+
+            let css = `.example-box {\n`;
+            css += `    display: grid;\n`;
+            css += `    grid-auto-flow: ${autoPlacementVal.split(': ')[1].replace(';', '')};\n`;
+
+            if (minmaxVal) {
+                exampleBox.style.gridTemplateColumns = `repeat(auto-fill, ${minmaxVal})`;
+                css += `    grid-template-columns: repeat(auto-fill, ${minmaxVal});\n`;
+            }
+            if (autoFillVal) {
+                exampleBox.style.gridTemplateColumns = autoFillVal;
+                css += `    grid-template-columns: ${autoFillVal};\n`;
+            }
+            if (autoFitVal) {
+                exampleBox.style.gridTemplateColumns = autoFitVal;
+                css += `    grid-template-columns: ${autoFitVal};\n`;
+            }
+            if (fractionalUnitsVal) {
+                exampleBox.style.gridTemplateColumns = fractionalUnitsVal;
+                css += `    grid-template-columns: ${fractionalUnitsVal};\n`;
+            }
+
+            if (nestedGridVal === "grid") {
+                document.querySelectorAll('.grid-item').forEach(item => {
+                    item.style.display = 'grid';
+                    item.style.gridTemplateColumns = '1fr 1fr';
+                });
+                css += `    .grid-item {\n`;
+                css += `        display: grid;\n`;
+                css += `        grid-template-columns: 1fr 1fr;\n`;
+                css += `    }\n`;
+            } else {
+                document.querySelectorAll('.grid-item').forEach(item => {
+                    item.style.display = '';
+                    item.style.gridTemplateColumns = '';
+                });
+            }
+
+            css += `}`;
+
+            cssCode.textContent = css;
+        }
+
+        document.querySelectorAll('select, input[type="text"]').forEach(element => {
+            element.addEventListener('input', updateCSS);
+        });
+
+        updateCSS();
+    </script>
+</body>
+</html>

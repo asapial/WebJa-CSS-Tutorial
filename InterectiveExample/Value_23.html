@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 23: CSS Units</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 1000px;
+            height: 50%;
+        }
+        .controls {
+            flex: 2;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 100%;
+            margin-right: 10px;
+        }
+        .css-output {
+            flex: 1;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 100%;
+            overflow: hidden;
+ 
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .control-group {
+            margin-bottom: 10px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .example-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #fff;
+        }
+        .example-box {
+            background-color: #ff5722;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="content-value">Content:</label>
+                <input type="text" id="content-value" placeholder="Enter text">
+            </div>
+            <div class="control-group">
+                <label for="padding-units">Padding:</label>
+                <select id="padding-units">
+                    <option value="px">px</option>
+                    <option value="pt">pt</option>
+                    <option value="cm">cm</option>
+                    <option value="mm">mm</option>
+                    <option value="in">in</option>
+                    <option value="em">em</option>
+                    <option value="rem">rem</option>
+                    <option value="%">%</option>
+                    <option value="vw">vw</option>
+                    <option value="vh">vh</option>
+                </select>
+                <input type="text" id="padding-value" placeholder="Enter value">
+            </div>
+            <div class="control-group">
+                <label for="border-units">Border:</label>
+                <select id="border-units">
+                    <option value="px">px</option>
+                    <option value="pt">pt</option>
+                    <option value="cm">cm</option>
+                    <option value="mm">mm</option>
+                    <option value="in">in</option>
+                    <option value="em">em</option>
+                    <option value="rem">rem</option>
+                    <option value="%">%</option>
+                    <option value="vw">vw</option>
+                    <option value="vh">vh</option>
+                </select>
+                <input type="text" id="border-value" placeholder="Enter value (e.g., 1px solid #fff)">
+            </div>
+            <div class="control-group">
+                <label for="margin-units">Margin:</label>
+                <select id="margin-units">
+                    <option value="px">px</option>
+                    <option value="pt">pt</option>
+                    <option value="cm">cm</option>
+                    <option value="mm">mm</option>
+                    <option value="in">in</option>
+                    <option value="em">em</option>
+                    <option value="rem">rem</option>
+                    <option value="%">%</option>
+                    <option value="vw">vw</option>
+                    <option value="vh">vh</option>
+                </select>
+                <input type="text" id="margin-value" placeholder="Enter value">
+            </div>
+            <div class="control-group">
+                <label for="width-units">Width:</label>
+                <select id="width-units">
+                    <option value="px">px</option>
+                    <option value="pt">pt</option>
+                    <option value="cm">cm</option>
+                    <option value="mm">mm</option>
+                    <option value="in">in</option>
+                    <option value="em">em</option>
+                    <option value="rem">rem</option>
+                    <option value="%">%</option>
+                    <option value="vw">vw</option>
+                    <option value="vh">vh</option>
+                </select>
+                <input type="text" id="width-value" placeholder="Enter value">
+            </div>
+            <div class="control-group">
+                <label for="height-units">Height:</label>
+                <select id="height-units">
+                    <option value="px">px</option>
+                    <option value="pt">pt</option>
+                    <option value="cm">cm</option>
+                    <option value="mm">mm</option>
+                    <option value="in">in</option>
+                    <option value="em">em</option>
+                    <option value="rem">rem</option>
+                    <option value="%">%</option>
+                    <option value="vw">vw</option>
+                    <option value="vh">vh</option>
+                </select>
+                <input type="text" id="height-value" placeholder="Enter value">
+            </div>
+            <div class="control-group">
+                <label for="box-sizing">Box Sizing:</label>
+                <select id="box-sizing">
+                    <option value="content-box">content-box</option>
+                    <option value="border-box">border-box</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="display">Display Property:</label>
+                <select id="display">
+                    <option value="block">block</option>
+                    <option value="inline">inline</option>
+                    <option value="inline-block">inline-block</option>
+                    <option value="flex">flex</option>
+                    <option value="grid">grid</option>
+                    <option value="none">none</option>
+                </select>
+            </div>
+        </div>
+        <div class="output">
+            <div class="example-container" id="example-container">
+                <div class="example-box" id="example-box">Example Content</div>
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            <pre id="css-code"></pre>
+        </div>
+    </div>
+
+    <script>
+        const contentValue = document.getElementById('content-value');
+        const paddingUnits = document.getElementById('padding-units');
+        const paddingValue = document.getElementById('padding-value');
+        const borderUnits = document.getElementById('border-units');
+        const borderValue = document.getElementById('border-value');
+        const marginUnits = document.getElementById('margin-units');
+        const marginValue = document.getElementById('margin-value');
+        const widthUnits = document.getElementById('width-units');
+        const widthValue = document.getElementById('width-value');
+        const heightUnits = document.getElementById('height-units');
+        const heightValue = document.getElementById('height-value');
+        const boxSizing = document.getElementById('box-sizing');
+        const display = document.getElementById('display');
+        const exampleBox = document.getElementById('example-box');
+        const cssCode = document.getElementById('css-code');
+
+        function updateCSS() {
+            const content = contentValue.value;
+            const padUnit = paddingUnits.value;
+            const padVal = paddingValue.value;
+            const bordUnit = borderUnits.value;
+            const bordVal = borderValue.value;
+            const margUnit = marginUnits.value;
+            const margVal = marginValue.value;
+            const widUnit = widthUnits.value;
+            const widVal = widthValue.value;
+            const heiUnit = heightUnits.value;
+            const heiVal = heightValue.value;
+            const boxSiz = boxSizing.value;
+            const displ = display.value;
+
+            let css = `.example-box {\n`;
+
+            if (content) css += `    content: "${content}";\n`;
+            if (padVal) css += `    padding: ${padVal}${padUnit};\n`;
+            if (bordVal) css += `    border: ${bordVal}${bordUnit};\n`;
+            if (margVal) css += `    margin: ${margVal}${margUnit};\n`;
+            if (widVal) css += `    width: ${widVal}${widUnit};\n`;
+            if (heiVal) css += `    height: ${heiVal}${heiUnit};\n`;
+            if (boxSiz) css += `    box-sizing: ${boxSiz};\n`;
+            if (displ) css += `    display: ${displ};\n`;
+
+            css += `}`;
+
+            exampleBox.style.padding = padVal ? padVal + padUnit : '';
+            exampleBox.style.border = bordVal ? bordVal : '';
+            exampleBox.style.margin = margVal ? margVal + margUnit : '';
+            exampleBox.style.width = widVal ? widVal + widUnit : '';
+            exampleBox.style.height = heiVal ? heiVal + heiUnit : '';
+            exampleBox.style.boxSizing = boxSiz ? boxSiz : '';
+            exampleBox.style.display = displ ? displ : '';
+            exampleBox.textContent = content ? content : 'Example Content';
+
+            cssCode.textContent = css;
+        }
+
+        document.querySelectorAll('select, input[type="text"]').forEach(element => {
+            element.addEventListener('input', updateCSS);
+        });
+
+        updateCSS();
+    </script>
+</body>
+</html>

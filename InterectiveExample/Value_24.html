@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 24: Icon Fonts and SVG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+            height: 80%;
+        }
+        .controls {
+            flex: 2;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 100%;
+            margin-right: 10px;
+        }
+        .css-output {
+            flex: 1;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 100%;
+            overflow: auto;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .control-group {
+            margin-bottom: 10px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .example-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        .example-box {
+            background-color: #ff5722;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="icon-fonts">Font Awesome Icons:</label>
+                <select id="icon-fonts">
+                    <option value="fas fa-home">Home</option>
+                    <option value="fas fa-user">User</option>
+                    <option value="fas fa-cog">Cog</option>
+                    <option value="fas fa-envelope">Envelope</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="icomoon-icons">IcoMoon Icons:</label>
+                <select id="icomoon-icons">
+                    <option value="icon-home">Home</option>
+                    <option value="icon-user">User</option>
+                    <option value="icon-cog">Cog</option>
+                    <option value="icon-envelope">Envelope</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="inline-svg">Inline SVG:</label>
+                <select id="inline-svg">
+                    <option value="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='48px' height='48px'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 2C8.69 2 6 4.69 6 8c0 2.69 1.63 5 4 6v6h-2v2h6v-2h-2v-6c2.37-1 4-3.31 4-6 0-3.31-2.69-6-6-6zm0 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z'/></svg>">Pin</option>
+                    <option value="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='48px' height='48px'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 2C8.69 2 6 4.69 6 8c0 2.69 1.63 5 4 6v6h-2v2h6v-2h-2v-6c2.37-1 4-3.31 4-6 0-3.31-2.69-6-6-6zm0 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z'/></svg>">SVG</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="svg-background">SVG Background:</label>
+                <select id="svg-background">
+                    <option value="url('https://via.placeholder.com/150')">Placeholder 150</option>
+                    <option value="url('https://via.placeholder.com/200')">Placeholder 200</option>
+                    <option value="url('https://via.placeholder.com/250')">Placeholder 250</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="svg-style">Styling SVG with CSS:</label>
+                <input type="text" id="svg-style" placeholder="Enter CSS properties (e.g., fill: red; width: 50px)">
+            </div>
+        </div>
+        <div class="output">
+            <div class="example-container" id="example-container">
+                <div class="example-box" id="example-box">
+                    <i id="icon-font" class="fas fa-home"></i>
+                    <span id="icomoon-icon" class="icon-home" style="display: none;"></span>
+                    <span id="inline-svg-icon" style="display: none;"></span>
+                </div>
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            <pre id="css-code"></pre>
+        </div>
+    </div>
+
+    <script>
+        const iconFonts = document.getElementById('icon-fonts');
+        const icomoonIcons = document.getElementById('icomoon-icons');
+        const inlineSvg = document.getElementById('inline-svg');
+        const svgBackground = document.getElementById('svg-background');
+        const svgStyle = document.getElementById('svg-style');
+        const exampleBox = document.getElementById('example-box');
+        const iconFont = document.getElementById('icon-font');
+        const icomoonIcon = document.getElementById('icomoon-icon');
+        const inlineSvgIcon = document.getElementById('inline-svg-icon');
+        const cssCode = document.getElementById('css-code');
+
+        function updateCSS() {
+            const selectedIconFont = iconFonts.value;
+            const selectedIcomoonIcon = icomoonIcons.value;
+            const selectedInlineSvg = inlineSvg.value;
+            const selectedSvgBackground = svgBackground.value;
+            const customSvgStyle = svgStyle.value;
+
+            iconFont.className = selectedIconFont;
+            icomoonIcon.className = selectedIcomoonIcon;
+            inlineSvgIcon.innerHTML = selectedInlineSvg;
+
+            exampleBox.style.backgroundImage = selectedSvgBackground;
+            inlineSvgIcon.style = customSvgStyle;
+
+            let css = `.example-box {\n`;
+            css += `    background-image: ${selectedSvgBackground};\n`;
+            css += `}\n\n`;
+            css += `.example-box i {\n`;
+            css += `    class: ${selectedIconFont};\n`;
+            css += `}\n\n`;
+            css += `.example-box span {\n`;
+            css += `    class: ${selectedIcomoonIcon};\n`;
+            css += `    ${customSvgStyle}\n`;
+            css += `}`;
+
+            cssCode.textContent = css;
+        }
+
+        document.querySelectorAll('select, input[type="text"]').forEach(element => {
+            element.addEventListener('input', updateCSS);
+        });
+
+        updateCSS();
+    </script>
+</body>
+</html>

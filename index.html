@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WebJa</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/CSS Component/index.css">
+    <link rel="stylesheet" href="/CSS Component/data.css">
+    <link rel="icon" href="/Icon/WebJaTitileIcon.png" type="image/x-icon">
+    <script src="/JS Component/index.js"></script>
+  </head>
+  <body>
+
+
+
+    <div id="container">
+      <div class="headerContainer">
+          <div class="head">
+              <div class="name">
+                <a href="">WebJa</a>
+              </div>
+              <div class="data_1"></div>
+              <div class="data_2"></div>
+              <div class="data_3"></div>
+              <div class="data_4"></div>
+              <div class="data_5"></div>
+              <div class="data_6"></div>
+              <div class="data_7"></div>
+              <div class="data_8">
+                <!-- <div class="slider-container">
+                  <input
+                    type="range"
+                    id="theme-slider"
+                    class="slider"
+                    min="0"
+                    max="100"
+                    value="0"
+                  />
+                </div> -->
+              </div>
+              <div class="LogIn">
+                <a href="">LogIn</a>
+              </div>
+              <div class="LiveIt">
+                <button><a href="/BodyParts/htmlEditor.html" target="_blank">Editor</a></button>
+              </div>
+          </div>
+          <div class="topics">
+              <div class="topics_1"><button id="burger" ><img src="/Icon/hamburgerIcon.png" alt="" width="50%"></button></div>
+              <div class="topics_2"></div>
+              <div class="topics_3"></div>
+              <div class="topics_4"></div>
+              <div class="topics_5"></div>
+              <div class="topics_6"></div>
+              <div class="topics_7"></div>
+              <div class="topics_8"></div>
+              <div class="topics_9"></div>
+              <div class="topics_10"></div>
+              <div class="topics_11"></div>
+              <div class="topics_12"></div>
+          </div>
+      </div>
+  
+      <div id="sideBar">
+        <div class="wrapper" id="wrapi">
+          <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_1.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(1)&quot;>LiveIt</a>'); return false;">Lesson: 1</a></h3>
+            <h4> Basics of CSS</h4>
+            <ul>
+            <li> Introduction to CSS</li>
+            <li> CSS Syntax and Selectors</li>
+            <li> Applying CSS to HTML (inline, internal, external)</li>
+            <li> CSS Comments</li>
+            <li> Basic CSS Properties (color, background-color)</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_2.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(2)&quot;>LiveIt</a>'); return false;">Lesson: 2</a></h3>
+            <h4> Text and Font Styling</h4>
+            <ul>
+            <li> Text Color</li>
+            <li> Text Alignment</li>
+            <li> Text Decoration</li>
+            <li> Font Family</li>
+            <li> Font Size</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_3.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(3)&quot;>LiveIt</a>'); return false;">Lesson: 3</a></h3>
+            <h4> Box Model</h4>
+            <ul>
+            <li> Understanding the Box Model</li>
+            <li> Content, Padding, Border, Margin</li>
+            <li> Width and Height</li>
+            <li> Box Sizing</li>
+            <li> Display Property</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_4.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(4)&quot;>LiveIt</a>'); return false;">Lesson: 4</a></h3>
+            <h4> Positioning</h4>
+            <ul>
+            <li> Static Positioning</li>
+            <li> Relative Positioning</li>
+            <li> Absolute Positioning</li>
+            <li> Fixed Positioning</li>
+            <li> Sticky Positioning</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_5.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(5)&quot;>LiveIt</a>'); return false;">Lesson: 5</a></h3>
+            <h4> Flexbox Basics</h4>
+            <ul>
+            <li> Introduction to Flexbox</li>
+            <li> Flex Container</li>
+            <li> Flex Items</li>
+            <li> justify-content</li>
+            <li> align-items</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_6.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(6)&quot;>LiveIt</a>'); return false;">Lesson: 6</a></h3>
+            <h4> Advanced Flexbox</h4>
+            <ul>
+            <li> flex-direction</li>
+            <li> flex-wrap</li>
+            <li> align-content</li>
+            <li> order</li>
+            <li> flex-grow, flex-shrink, flex-basis</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_7.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(7)&quot;>LiveIt</a>'); return false;">Lesson: 7</a></h3>
+            <h4> Grid Layout Basics</h4>
+            <ul>
+            <li> Introduction to CSS Grid</li>
+            <li> Grid Container</li>
+            <li> Grid Items</li>
+            <li> grid-template-columns, grid-template-rows</li>
+            <li> grid-gap</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_8.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(8)&quot;>LiveIt</a>'); return false;">Lesson: 8</a></h3>
+            <h4> Advanced Grid Layout</h4>
+            <ul>
+            <li> grid-area</li>
+            <li> grid-template-areas</li>
+            <li> justify-items</li>
+            <li> align-items</li>
+            <li> grid-auto-flow</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_9.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(9)&quot;>LiveIt</a>'); return false;">Lesson: 9</a></h3>
+            <h4> Backgrounds</h4>
+            <ul>
+            <li> background-image</li>
+            <li> background-repeat</li>
+            <li> background-size</li>
+            <li> background-position</li>
+            <li> background-attachment</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_10.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(10)&quot;>LiveIt</a>'); return false;">Lesson: 10</a></h3>
+            <h4> Borders and Outlines</h4>
+            <ul>
+            <li> Border Styles</li>
+            <li> Border Width</li>
+            <li> Border Color</li>
+            <li> Border Radius</li>
+            <li> Outlines</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_11.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(11)&quot;>LiveIt</a>'); return false;">Lesson: 11</a></h3>
+            <h4> Pseudo-classes and Pseudo-elements</h4>
+            <ul>
+            <li> :hover</li>
+            <li> :active</li>
+            <li> :focus</li>
+            <li> ::before</li>
+            <li> ::after</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_12.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(12)&quot;>LiveIt</a>'); return false;">Lesson: 12</a></h3>
+            <h4> Transitions and Animations</h4>
+            <ul>
+            <li> CSS Transitions</li>
+            <li> transition-property</li>
+            <li> transition-duration</li>
+            <li> CSS Animations</li>
+            <li> @keyframes</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_13.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(13)&quot;>LiveIt</a>'); return false;">Lesson: 13</a></h3>
+            <h4> Transformations</h4>
+            <ul>
+            <li> translate</li>
+            <li> rotate</li>
+            <li> scale</li>
+            <li> skew</li>
+            <li> matrix</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_14.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(14)&quot;>LiveIt</a>'); return false;">Lesson: 14</a></h3>
+            <h4> Responsive Design Basics</h4>
+            <ul>
+            <li> Media Queries</li>
+            <li> Viewport Units (vw, vh)</li>
+            <li> Responsive Typography</li>
+            <li> Fluid Layouts</li>
+            <li> Mobile-first Design</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_15.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(15)&quot;>LiveIt</a>'); return false;">Lesson: 15</a></h3>
+            <h4> Advanced Responsive Design</h4>
+            <ul>
+            <li> Flexbox for Responsive Design</li>
+            <li> Grid for Responsive Design</li>
+            <li> CSS Frameworks (Bootstrap, Foundation)</li>
+            <li> Responsive Images</li>
+            <li> CSS Variables (Custom Properties)</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_16.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(16)&quot;>LiveIt</a>'); return false;">Lesson: 16</a></h3>
+            <h4> CSS Variables</h4>
+            <ul>
+            <li> Defining Variables</li>
+            <li> Using Variables</li>
+            <li> Variables in Media Queries</li>
+            <li> Variables with JavaScript</li>
+            <li> Fallback Values</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_17.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(17)&quot;>LiveIt</a>'); return false;">Lesson: 17</a></h3>
+            <h4> CSS Functions</h4>
+            <ul>
+            <li> calc()</li>
+            <li> var()</li>
+            <li> url()</li>
+            <li> rgba()</li>
+            <li> hsla()</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_18.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(18)&quot;>LiveIt</a>'); return false;">Lesson: 18</a></h3>
+            <h4> Colors and Gradients</h4>
+            <ul>
+            <li> Hexadecimal Colors</li>
+            <li> RGB and RGBA Colors</li>
+            <li> HSL and HSLA Colors</li>
+            <li> Linear Gradients</li>
+            <li> Radial Gradients</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_19.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(19)&quot;>LiveIt</a>'); return false;">Lesson: 19</a></h3>
+            <h4> CSS Filters</h4>
+            <ul>
+            <li> blur()</li>
+            <li> brightness()</li>
+            <li> contrast()</li>
+            <li> drop-shadow()</li>
+            <li> grayscale()</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_20.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(20)&quot;>LiveIt</a>'); return false;">Lesson: 20</a></h3>
+            <h4> Advanced Selectors</h4>
+            <ul>
+            <li> Attribute Selectors</li>
+            <li> Child Combinators</li>
+            <li> Sibling Combinators</li>
+            <li> Descendant Selectors</li>
+            <li> Universal Selector</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_21.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(21)&quot;>LiveIt</a>'); return false;">Lesson: 21</a></h3>
+            <h4> Forms and Input Styling</h4>
+            <ul>
+            <li> Styling Text Inputs</li>
+            <li> Styling Buttons</li>
+            <li> Styling Checkboxes</li>
+            <li> Styling Radio Buttons</li>
+            <li> Styling Select Menus</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_22.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(22)&quot;>LiveIt</a>'); return false;">Lesson: 22</a></h3>
+            <h4> Table Styling</h4>
+            <ul>
+            <li> Basic Table Styling</li>
+            <li> Table Borders</li>
+            <li> Table Padding and Spacing</li>
+            <li> Zebra Stripes</li>
+            <li> Responsive Tables</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_23.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(23)&quot;>LiveIt</a>'); return false;">Lesson: 23</a></h3>
+            <h4> CSS Units</h4>
+            <ul>
+            <li> Absolute Units (px, pt, cm, mm, in)</li>
+            <li> Relative Units (em, rem, %, vw, vh)</li>
+            <li> Differences Between px, em, and rem</li>
+            <li> Using Viewport Units</li>
+            <li> Combining Units</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_24.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(24)&quot;>LiveIt</a>'); return false;">Lesson: 24</a></h3>
+            <h4> Icon Fonts and SVG</h4>
+            <ul>
+            <li> Font Awesome Icons</li>
+            <li> IcoMoon</li>
+            <li> Inline SVG</li>
+            <li> SVG Backgrounds</li>
+            <li> Styling SVG with CSS</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_25.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(25)&quot;>LiveIt</a>'); return false;">Lesson: 25</a></h3>
+            <h4> CSS Grid Advanced</h4>
+            <ul>
+            <li> Grid Auto Placement</li>
+            <li> minmax()</li>
+            <li> auto-fill and auto-fit</li>
+            <li> Fractional Units (fr)</li>
+            <li> Nested Grids</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_26.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(26)&quot;>LiveIt</a>'); return false;">Lesson: 26</a></h3>
+            <h4> CSS Preprocessors</h4>
+            <ul>
+            <li> Introduction to SASS/SCSS</li>
+            <li> Variables in SASS/SCSS</li>
+            <li> Nesting in SASS/SCSS</li>
+            <li> Mixins in SASS/SCSS</li>
+            <li> Inheritance in SASS/SCSS</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_27.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(27)&quot;>LiveIt</a>'); return false;">Lesson: 27</a></h3>
+            <h4> CSS Frameworks</h4>
+            <ul>
+            <li> Bootstrap Grid System</li>
+            <li> Bootstrap Components</li>
+            <li> Foundation Grid System</li>
+            <li> Tailwind CSS Basics</li>
+            <li> Materialize CSS</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_28.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(28)&quot;>LiveIt</a>'); return false;">Lesson: 28</a></h3>
+            <h4> Custom Fonts and Typography</h4>
+            <ul>
+            <li> @font-face Rule</li>
+            <li> Google Fonts</li>
+            <li> Web Safe Fonts</li>
+            <li> Font Weight and Style</li>
+            <li> Text Shadow</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_29.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(29)&quot;>LiveIt</a>'); return false;">Lesson: 29</a></h3>
+            <h4> CSS Reset and Normalize</h4>
+            <ul>
+            <li> CSS Reset</li>
+            <li> Normalize.css</li>
+            <li> Differences Between Reset and Normalize</li>
+            <li> Custom Reset Styles</li>
+            <li> Browser Default Styles</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_30.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(30)&quot;>LiveIt</a>'); return false;">Lesson: 30</a></h3>
+            <h4> Advanced Pseudo-classes</h4>
+            <ul>
+            <li> :nth-child()</li>
+            <li> :nth-of-type()</li>
+            <li> :first-child</li>
+            <li> :last-child</li>
+            <li> :not()</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_31.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(31)&quot;>LiveIt</a>'); return false;">Lesson: 31</a></h3>
+            <h4> Content and Media Queries</h4>
+            <ul>
+            <li> min-width and max-width</li>
+            <li> min-height and max-height</li>
+            <li> Orientation Media Queries</li>
+            <li> Aspect Ratio Media Queries</li>
+            <li> Dark Mode Media Queries</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_32.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(32)&quot;>LiveIt</a>'); return false;">Lesson: 32</a></h3>
+            <h4> Advanced Animations</h4>
+            <ul>
+            <li> Animation Timing Functions</li>
+            <li> Animation Delay</li>
+            <li> Animation Iteration Count</li>
+            <li> Animation Direction</li>
+            <li> Animation Fill Mode</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_33.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(33)&quot;>LiveIt</a>'); return false;">Lesson: 33</a></h3>
+            <h4> CSS Shapes</h4>
+            <ul>
+            <li> Creating Circles</li>
+            <li> Creating Triangles</li>
+            <li> Creating Polygons</li>
+            <li> CSS Shapes with Clip-path</li>
+            <li> CSS Shapes with Border-radius</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_34.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(34)&quot;>LiveIt</a>'); return false;">Lesson: 34</a></h3>
+            <h4> CSS Custom Properties</h4>
+            <ul>
+            <li> Using CSS Variables</li>
+            <li> Updating Variables with JavaScript</li>
+            <li> Local Scope vs Global Scope</li>
+            <li> Dynamic Theming with Variables</li>
+            <li> Fallback Values in Variables</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_35.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(35)&quot;>LiveIt</a>'); return false;">Lesson: 35</a></h3>
+            <h4> Accessibility in CSS</h4>
+            <ul>
+            <li> Accessible Color Contrast</li>
+            <li> Focus States</li>
+            <li> Skip to Content Links</li>
+            <li> ARIA Roles and Attributes</li>
+            <li> CSS for Screen Readers</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_36.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(36)&quot;>LiveIt</a>'); return false;">Lesson: 36</a></h3>
+            <h4> CSS Counters</h4>
+            <ul>
+            <li> Using CSS Counters</li>
+            <li> Counter Increment</li>
+            <li> Counter Reset</li>
+            <li> Nested Counters</li>
+            <li> Styling Counters</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_37.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(37)&quot;>LiveIt</a>'); return false;">Lesson: 37</a></h3>
+            <h4> Grid Layout Advanced Techniques</h4>
+            <ul>
+            <li> Grid Template Areas</li>
+            <li> Named Lines</li>
+            <li> Subgrid</li>
+            <li> Responsive Grids</li>
+            <li> Grid Alignment</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_38.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(38)&quot;>LiveIt</a>'); return false;">Lesson: 38</a></h3>
+            <h4> Advanced Flexbox Techniques</h4>
+            <ul>
+            <li> Complex Flexbox Layouts</li>
+            <li> Flexbox Alignment Techniques</li>
+            <li> Flexbox for Responsive Design</li>
+            <li> Flexbox Grid Systems</li>
+            <li> Cross-browser Flexbox Issues</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_39.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(39)&quot;>LiveIt</a>'); return false;">Lesson: 39</a></h3>
+            <h4> Advanced Styling Techniques</h4>
+            <ul>
+            <li> CSS Sprites</li>
+            <li> CSS Clipping and Masking</li>
+            <li> Multi-column Layout</li>
+            <li> Object-fit and Object-position</li>
+            <li> CSS Blend Modes</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_40.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(40)&quot;>LiveIt</a>'); return false;">Lesson: 40</a></h3>
+            <h4> CSS for Print</h4>
+            <ul>
+            <li> Page Breaks</li>
+            <li> Styling for Print Media</li>
+            <li> @page Rule</li>
+            <li> CSS Units for Print</li>
+            <li> Print-specific Styles</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_41.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(41)&quot;>LiveIt</a>'); return false;">Lesson: 41</a></h3>
+            <h4> Performance Optimization</h4>
+            <ul>
+            <li> CSS Minification</li>
+            <li> Critical CSS</li>
+            <li> CSS Compression</li>
+            <li> Reducing Repaints and Reflows</li>
+            <li> Efficient CSS Selectors</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_42.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(42)&quot;>LiveIt</a>'); return false;">Lesson: 42</a></h3>
+            <h4> Theming and Customization</h4>
+            <ul>
+            <li> Light and Dark Themes</li>
+            <li> User Preference Media Queries</li>
+            <li> CSS Variables for Theming</li>
+            <li> Theme Switchers</li>
+            <li> Theming with Preprocessors</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_43.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(43)&quot;>LiveIt</a>'); return false;">Lesson: 43</a></h3>
+            <h4> CSS Architecture</h4>
+            <ul>
+            <li> BEM Methodology</li>
+            <li> OOCSS (Object-Oriented CSS)</li>
+            <li> SMACSS (Scalable and Modular Architecture for CSS)</li>
+            <li> ITCSS (Inverted Triangle CSS)</li>
+            <li> Atomic CSS</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_44.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(44)&quot;>LiveIt</a>'); return false;">Lesson: 44</a></h3>
+            <h4> Practical Projects</h4>
+            <ul>
+            <li> Building a Responsive Navbar</li>
+            <li> Creating a Card Layout</li>
+            <li> Styling a Blog Post</li>
+            <li> Designing a Form</li>
+            <li> Building a Responsive Footer</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_45.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(45)&quot;>LiveIt</a>'); return false;">Lesson: 45</a></h3>
+            <h4> Debugging CSS</h4>
+            <ul>
+            <li> Browser Developer Tools</li>
+            <li> CSS Validation</li>
+            <li> Common CSS Issues</li>
+            <li> Debugging Flexbox and Grid</li>
+            <li> Debugging Media Queries</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_46.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(46)&quot;>LiveIt</a>'); return false;">Lesson: 46</a></h3>
+            <h4> CSS and JavaScript Integration</h4>
+            <ul>
+            <li> Adding and Removing Classes</li>
+            <li> Manipulating Styles with JavaScript</li>
+            <li> CSS Transitions with JavaScript</li>
+            <li> CSS Variables and JavaScript</li>
+            <li> Intersection Observer API</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_47.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(47)&quot;>LiveIt</a>'); return false;">Lesson: 47</a></h3>
+            <h4> CSS for Web Components</h4>
+            <ul>
+            <li> Shadow DOM</li>
+            <li> Styling Shadow DOM Elements</li>
+            <li> CSS Custom Properties in Web Components</li>
+            <li> Scoped CSS</li>
+            <li> Using CSS with LitElement</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_48.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(48)&quot;>LiveIt</a>'); return false;">Lesson: 48</a></h3>
+            <h4> Image and Media Handling</h4>
+            <ul>
+            <li> Responsive Images</li>
+            <li> Picture Element</li>
+            <li> Image Sprites</li>
+            <li> CSS Gradients for Image Overlays</li>
+            <li> Lazy Loading Images</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_49.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(49)&quot;>LiveIt</a>'); return false;">Lesson: 49</a></h3>
+            <h4> Grid and Flexbox Comparison</h4>
+            <ul>
+            <li> Use Cases for Flexbox</li>
+            <li> Use Cases for Grid</li>
+            <li> Combining Flexbox and Grid</li>
+            <li> Creating Layouts with Flexbox and Grid</li>
+            <li> Pros and Cons of Flexbox vs Grid</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_50.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(50)&quot;>LiveIt</a>'); return false;">Lesson: 50</a></h3>
+            <h4> CSS Houdini</h4>
+            <ul>
+            <li> Introduction to Houdini</li>
+            <li> Paint API</li>
+            <li> Typed OM (Object Model)</li>
+            <li> Layout API</li>
+            <li> Houdini and Performance</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_51.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(51)&quot;>LiveIt</a>'); return false;">Lesson: 51</a></h3>
+            <h4> CSS in JS</h4>
+            <ul>
+            <li> Introduction to CSS-in-JS</li>
+            <li> Styled Components</li>
+            <li> Emotion Library</li>
+            <li> CSS Modules</li>
+            <li> Best Practices for CSS-in-JS</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_52.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(52)&quot;>LiveIt</a>'); return false;">Lesson: 52</a></h3>
+            <h4> Advanced CSS Layout Techniques</h4>
+            <ul>
+            <li> Holy Grail Layout</li>
+            <li> CSS Grid Masonry Layout</li>
+            <li> Flexbox Masonry Layout</li>
+            <li> CSS Grid with Flexbox</li>
+            <li> Complex Responsive Layouts</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_53.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(53)&quot;>LiveIt</a>'); return false;">Lesson: 53</a></h3>
+            <h4> Advanced Text Effects</h4>
+            <ul>
+            <li> Text Shadows</li>
+            <li> Text Gradients</li>
+            <li> Text Stroke</li>
+            <li> Letter Spacing and Line Height</li>
+            <li> Text Transformations</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_54.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(54)&quot;>LiveIt</a>'); return false;">Lesson: 54</a></h3>
+            <h4> CSS Transitions and Keyframes</h4>
+            <ul>
+            <li> Transition Property</li>
+            <li> Transition Timing Functions</li>
+            <li> Keyframes Syntax</li>
+            <li> Advanced Keyframe Animations</li>
+            <li> Combining Transitions and Keyframes</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_55.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(55)&quot;>LiveIt</a>'); return false;">Lesson: 55</a></h3>
+            <h4> Web Performance Optimization</h4>
+            <ul>
+            <li> CSS and Web Performance</li>
+            <li> Reducing CSS Footprint</li>
+            <li> Avoiding CSS Bottlenecks</li>
+            <li> Optimizing Fonts</li>
+            <li> Critical Path CSS</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_56.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(56)&quot;>LiveIt</a>'); return false;">Lesson: 56</a></h3>
+            <h4> Practical Layout Challenges</h4>
+            <ul>
+            <li> Building a Portfolio Layout</li>
+            <li> Creating a Dashboard Layout</li>
+            <li> Designing a Product Page</li>
+            <li> Styling a Blog Layout</li>
+            <li> Building a Landing Page</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_57.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(57)&quot;>LiveIt</a>'); return false;">Lesson: 57</a></h3>
+            <h4> Cross-Browser Compatibility</h4>
+            <ul>
+            <li> Vendor Prefixes</li>
+            <li> CSS Resets</li>
+            <li> Using Can I Use</li>
+            <li> Polyfills and Fallbacks</li>
+            <li> Testing Across Browsers</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_58.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(58)&quot;>LiveIt</a>'); return false;">Lesson: 58</a></h3>
+            <h4> Advanced CSS3 Features</h4>
+            <ul>
+            <li> CSS3 Selectors</li>
+            <li> CSS3 Transitions</li>
+            <li> CSS3 Animations</li>
+            <li> CSS3 3D Transforms</li>
+            <li> CSS3 Flexbox</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_59.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(59)&quot;>LiveIt</a>'); return false;">Lesson: 59</a></h3>
+            <h4> CSS Layout Techniques</h4>
+            <ul>
+            <li> Single-Column Layout</li>
+            <li> Multi-Column Layout</li>
+            <li> Fixed Layout</li>
+            <li> Fluid Layout</li>
+            <li> Hybrid Layout</li>
+            </ul>
+            </div>
+            <div class="premium-box" >
+            <h3><a href="#" onclick="loadHTMLContent('/LearningNote/Lesson_60.html', 'content2'); loadFooter('<a onclick=&quot;makeExperience(60)&quot;>LiveIt</a>'); return false;">Lesson: 60</a></h3>
+            <h4> Future of CSS</h4>
+            <ul>
+            <li> Upcoming CSS Features</li>
+            <li> CSS Houdini APIs</li>
+            <li> CSS Working Group</li>
+            <li> Staying Updated with CSS</li>
+            <li> Experimenting with New CSS Techniques</li>
+            </ul>
+            </div>
+            
+        </div>
+      </div>
+
+      <div class="content" id="content">
+        <div id="content2" class="content2"></div>
+        <div class="footer_styles" id="footer">
+          <a href="/InterectiveExample/Value_2.html" target="_blank">LiveIt</a>
+        </div>
+      </div>
+  
+      <div class="addBar">
+  
+      </div>
+  
+      <!-- <div class="footer">
+  
+      </div> -->
+
+    </div>
+    <script>
+      function loadHTMLContent(url, elementId) {
+        fetch(url)
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById(elementId).innerHTML = data;
+          })
+          .catch((error) =>
+            console.error("Error loading HTML content:", error)
+          );
+      }
+      loadHTMLContent("/LearningNote/Lesson_1.html", "content2");
+    </script>
+    
+    <script>
+      function loadFooter(link) {
+        document.getElementById("footer").innerHTML = link;
+      }
+      function makeExperience(load) {
+        localStorage.setItem("serial", load);
+        window.open("/BodyParts/exampleMaker.html", "_blank");
+      }
+    </script>
+    <script src="UI_2.0.js" ></script>
+  </body> 
+
+</html>

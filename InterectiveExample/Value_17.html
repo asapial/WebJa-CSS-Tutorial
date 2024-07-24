@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 17: CSS Functions</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+        }
+        .controls {
+            flex: 2;
+            padding: 20px;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+            padding: 20px;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .example-box {
+            width: 100px;
+            height: 100px;
+            background-color: var(--box-color, #ff5722);
+            border-radius: var(--box-radius, 5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="css-function-topic">CSS Function Topic</label>
+                <select id="css-function-topic" onchange="updateExample()">
+                    <option value="calc">calc()</option>
+                    <option value="var">var()</option>
+                    <option value="url">url()</option>
+                    <option value="rgba">rgba()</option>
+                    <option value="hsla">hsla()</option>
+                </select>
+            </div>
+            <div class="control-group" id="calc-controls">
+                <label for="calc-width">Box Width (calc)</label>
+                <input type="text" id="calc-width" value="50% + 50px" onchange="updateExample()" />
+            </div>
+            <div class="control-group" id="var-controls">
+                <label for="var-color">Box Color (var)</label>
+                <input type="text" id="var-color" value="#ff5722" onchange="updateExample()" />
+            </div>
+            <div class="control-group" id="url-controls">
+                <label for="url-bg">Background Image URL</label>
+                <input type="text" id="url-bg" value="https://via.placeholder.com/100" onchange="updateExample()" />
+            </div>
+            <div class="control-group" id="rgba-controls">
+                <label for="rgba-color">Box Color (rgba)</label>
+                <input type="text" id="rgba-color" value="255, 87, 34, 0.8" onchange="updateExample()" />
+            </div>
+            <div class="control-group" id="hsla-controls">
+                <label for="hsla-color">Box Color (hsla)</label>
+                <input type="text" id="hsla-color" value="14, 100%, 53%, 0.8" onchange="updateExample()" />
+            </div>
+        </div>
+        <div class="output">
+            <div class="example-box" id="example-box"></div>
+        </div>
+        <div class="css-output" id="css-output">
+            <pre>
+.example-box {
+    width: calc(50% + 50px);
+    background-color: var(--box-color, #ff5722);
+    background-image: url(https://via.placeholder.com/100);
+    background-color: rgba(255, 87, 34, 0.8);
+    background-color: hsla(14, 100%, 53%, 0.8);
+}
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        function updateExample() {
+            const topic = document.getElementById('css-function-topic').value;
+            const calcWidth = document.getElementById('calc-width').value;
+            const varColor = document.getElementById('var-color').value;
+            const urlBg = document.getElementById('url-bg').value;
+            const rgbaColor = document.getElementById('rgba-color').value;
+            const hslaColor = document.getElementById('hsla-color').value;
+
+            document.getElementById('calc-controls').style.display = 'none';
+            document.getElementById('var-controls').style.display = 'none';
+            document.getElementById('url-controls').style.display = 'none';
+            document.getElementById('rgba-controls').style.display = 'none';
+            document.getElementById('hsla-controls').style.display = 'none';
+
+            const exampleBox = document.getElementById('example-box');
+            if (topic === 'calc') {
+                document.getElementById('calc-controls').style.display = 'block';
+                exampleBox.style.width = `calc(${calcWidth})`;
+            } else if (topic === 'var') {
+                document.getElementById('var-controls').style.display = 'block';
+                document.documentElement.style.setProperty('--box-color', varColor);
+            } else if (topic === 'url') {
+                document.getElementById('url-controls').style.display = 'block';
+                exampleBox.style.backgroundImage = `url(${urlBg})`;
+            } else if (topic === 'rgba') {
+                document.getElementById('rgba-controls').style.display = 'block';
+                exampleBox.style.backgroundColor = `rgba(${rgbaColor})`;
+            } else if (topic === 'hsla') {
+                document.getElementById('hsla-controls').style.display = 'block';
+                exampleBox.style.backgroundColor = `hsla(${hslaColor})`;
+            }
+
+            // Update CSS Output
+            const cssOutput = document.getElementById('css-output');
+            cssOutput.innerHTML = `<pre>
+.example-box {
+    width: calc(${calcWidth});
+    background-color: var(--box-color, #ff5722);
+    background-image: url(${urlBg});
+    background-color: rgba(${rgbaColor});
+    background-color: hsla(${hslaColor});
+}
+            </pre>`;
+        }
+
+        // Initialize with default values
+        updateExample();
+    </script>
+</body>
+</html>

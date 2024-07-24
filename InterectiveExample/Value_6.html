@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6: Advanced Flexbox</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+            justify-content: space-between;
+        }
+        .controls {
+            flex: 2;
+            padding: 20px;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+            padding: 20px;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .flex-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+        .flex-item {
+            width: 50px;
+            height: 50px;
+            background-color: #ff5722;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="flex-direction">Flex Direction:</label>
+                <select id="flex-direction">
+                    <option value="row">row</option>
+                    <option value="row-reverse">row-reverse</option>
+                    <option value="column">column</option>
+                    <option value="column-reverse">column-reverse</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="flex-wrap">Flex Wrap:</label>
+                <select id="flex-wrap">
+                    <option value="nowrap">nowrap</option>
+                    <option value="wrap">wrap</option>
+                    <option value="wrap-reverse">wrap-reverse</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="align-content">Align Content:</label>
+                <select id="align-content">
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="center">center</option>
+                    <option value="space-between">space-between</option>
+                    <option value="space-around">space-around</option>
+                    <option value="stretch">stretch</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="order">Order:</label>
+                <input type="text" id="order" placeholder="Enter order (e.g., 1, -1, 0)">
+            </div>
+            <div class="control-group">
+                <label for="flex-grow">Flex Grow:</label>
+                <input type="text" id="flex-grow" placeholder="Enter flex grow value (e.g., 1, 2)">
+            </div>
+            <div class="control-group">
+                <label for="flex-shrink">Flex Shrink:</label>
+                <input type="text" id="flex-shrink" placeholder="Enter flex shrink value (e.g., 1, 2)">
+            </div>
+            <div class="control-group">
+                <label for="flex-basis">Flex Basis:</label>
+                <input type="text" id="flex-basis" placeholder="Enter flex basis value (e.g., 50px, 10%)">
+            </div>
+        </div>
+        <div class="output">
+            <div class="flex-container" id="flex-container">
+                <div class="flex-item">1</div>
+                <div class="flex-item">2</div>
+                <div class="flex-item">3</div>
+                <div class="flex-item">4</div>
+                <div class="flex-item">5</div>
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            /* CSS will be displayed here */
+        </div>
+    </div>
+
+    <script>
+        const flexContainer = document.getElementById('flex-container');
+        const cssOutput = document.getElementById('css-output');
+
+        const updateFlexContainer = () => {
+            const flexDirection = document.getElementById('flex-direction').value;
+            const flexWrap = document.getElementById('flex-wrap').value;
+            const alignContent = document.getElementById('align-content').value;
+            const order = document.getElementById('order').value || '0';
+            const flexGrow = document.getElementById('flex-grow').value || '0';
+            const flexShrink = document.getElementById('flex-shrink').value || '1';
+            const flexBasis = document.getElementById('flex-basis').value || 'auto';
+
+            flexContainer.style.flexDirection = flexDirection;
+            flexContainer.style.flexWrap = flexWrap;
+            flexContainer.style.alignContent = alignContent;
+
+            const flexItems = flexContainer.children;
+            for (let i = 0; i < flexItems.length; i++) {
+                flexItems[i].style.order = order;
+                flexItems[i].style.flexGrow = flexGrow;
+                flexItems[i].style.flexShrink = flexShrink;
+                flexItems[i].style.flexBasis = flexBasis;
+            }
+
+            const cssText = `
+                .flex-container {
+                    flex-direction: ${flexDirection};
+                    flex-wrap: ${flexWrap};
+                    align-content: ${alignContent};
+                }
+                .flex-item {
+                    order: ${order};
+                    flex-grow: ${flexGrow};
+                    flex-shrink: ${flexShrink};
+                    flex-basis: ${flexBasis};
+                }
+            `;
+            cssOutput.textContent = cssText;
+        };
+
+        document.querySelectorAll('select, input').forEach(input => {
+            input.addEventListener('input', updateFlexContainer);
+        });
+
+        updateFlexContainer();
+    </script>
+</body>
+</html>

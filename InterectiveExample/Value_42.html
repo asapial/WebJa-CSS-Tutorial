@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theming and Customization Example</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: var(--container-bg-color, #fff);
+            transition: background-color 0.3s ease, color 0.3s ease;
+           
+        }
+        }
+        .example-box {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: center;
+            background-color: var(--box-bg-color, #3498db);
+            color: var(--box-text-color, #fff);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: var(--button-bg-color, #3498db);
+            color: var(--button-text-color, #fff);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* CSS Variables for Theming */
+        :root {
+
+          --bg-color: #333;
+            --text-color: #f0f0f0;
+            --container-bg-color: #444;
+            --box-bg-color: #2980b9;
+            --box-text-color: #fff;
+            --button-bg-color: #2980b9;
+            --button-text-color: #fff;
+
+            --bg-color: #f0f0f0;
+            --text-color: #333;
+            --container-bg-color: #fff;
+            --box-bg-color: #3498db;
+            --box-text-color: #fff;
+            --button-bg-color: #3498db;
+            --button-text-color: #fff;
+        }
+        .dark-theme {
+          --bg-color: #f0f0f0;
+            --text-color: #333;
+            --container-bg-color: #fff;
+            --box-bg-color: #3498db;
+            --box-text-color: #fff;
+            --button-bg-color: #3498db;
+            --button-text-color: #fff;
+        }
+
+        /* Applying theme variables */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* User Preference Media Queries */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #333;
+                --text-color: #f0f0f0;
+                --container-bg-color: #444;
+                --box-bg-color: #2980b9;
+                --box-text-color: #fff;
+                --button-bg-color: #2980b9;
+                --button-text-color: #fff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Theming and Customization Example</h1>
+        
+        <!-- Light and Dark Themes -->
+        <div class="label">Light and Dark Themes</div>
+        <div class="example-box">This box uses the current theme colors</div>
+
+        <!-- Theme Switcher Button -->
+        <button id="themeSwitcher">Toggle Theme</button>
+    </div>
+
+    <!-- Theme Switcher Script -->
+    <script>
+        const themeSwitcher = document.getElementById('themeSwitcher');
+        const body = document.body;
+
+        themeSwitcher.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+        });
+    </script>
+</body>
+</html>

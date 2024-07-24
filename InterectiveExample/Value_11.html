@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 11: Pseudo-classes and Pseudo-elements</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+        }
+        .controls {
+            flex: 2;
+            padding: 20px;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+            padding: 20px;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"], input[type="color"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .preview-box {
+            width: 100px;
+            height: 100px;
+            background-color: #444;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            outline: none;
+        }
+        .preview-box::before,
+        .preview-box::after {
+            content: '';
+            position: absolute;
+            background-color: #888;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="hover-color">:hover Background Color:</label>
+                <input type="color" id="hover-color" value="#ff5722">
+            </div>
+            <div class="control-group">
+                <label for="active-color">:active Background Color:</label>
+                <input type="color" id="active-color" value="#ff0000">
+            </div>
+            <div class="control-group">
+                <label for="focus-color">:focus Background Color:</label>
+                <input type="color" id="focus-color" value="#00ff00">
+            </div>
+            <div class="control-group">
+                <label for="before-content">::before Content:</label>
+                <input type="text" id="before-content" placeholder="Enter content">
+            </div>
+            <div class="control-group">
+                <label for="after-content">::after Content:</label>
+                <input type="text" id="after-content" placeholder="Enter content">
+            </div>
+        </div>
+        <div class="output">
+            <div class="preview-box" id="preview-box" tabindex="0">
+                Box
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            /* CSS will be displayed here */
+        </div>
+    </div>
+
+    <script>
+        const previewBox = document.getElementById('preview-box');
+        const cssOutput = document.getElementById('css-output');
+
+        const updatePreviewBox = () => {
+            const hoverColor = document.getElementById('hover-color').value;
+            const activeColor = document.getElementById('active-color').value;
+            const focusColor = document.getElementById('focus-color').value;
+            const beforeContent = document.getElementById('before-content').value;
+            const afterContent = document.getElementById('after-content').value;
+
+            const styleElement = document.createElement('style');
+            styleElement.innerHTML = `
+                .preview-box:hover {
+                    background-color: ${hoverColor};
+                }
+                .preview-box:active {
+                    background-color: ${activeColor};
+                }
+                .preview-box:focus {
+                    background-color: ${focusColor};
+                    outline: none;
+                }
+                .preview-box::before {
+                    content: '${beforeContent}';
+                    display: ${beforeContent ? 'block' : 'none'};
+                }
+                .preview-box::after {
+                    content: '${afterContent}';
+                    display: ${afterContent ? 'block' : 'none'};
+                }
+            `;
+
+            document.head.appendChild(styleElement);
+
+            // Display CSS
+            const cssText = `
+                .preview-box:hover {
+                    background-color: ${hoverColor};
+                }
+                .preview-box:active {
+                    background-color: ${activeColor};
+                }
+                .preview-box:focus {
+                    background-color: ${focusColor};
+                    outline: none;
+                }
+                .preview-box::before {
+                    content: '${beforeContent}';
+                    display: ${beforeContent ? 'block' : 'none'};
+                }
+                .preview-box::after {
+                    content: '${afterContent}';
+                    display: ${afterContent ? 'block' : 'none'};
+                }
+            `;
+            cssOutput.textContent = cssText;
+        };
+
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', updatePreviewBox);
+        });
+
+        updatePreviewBox();
+    </script>
+</body>
+</html>

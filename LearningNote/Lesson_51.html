@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      Lesson 51: CSS-in-JS
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div id="preview" class="preview scrollEditor">
+      <div id="container-ruller" />
+      <div id="preview-content">
+        <h1
+          type="title"
+          class="main-title"
+          id="Lesson 51: CSS-in-JS"
+        >
+          CSS-in-JS
+        </h1>
+        <h4
+          id="1.-introduction-to-css-in-js"
+          class="preview-paragraph-4 preview-line 4"
+          data_line_start="4"
+          data_line_end="4"
+          data_line="4,5"
+          count_line="1"
+        >
+          1. Introduction to CSS-in-JS
+        </h4>
+        <div
+          class="preview-paragraph-6 preview-line 6 7"
+          data_line_start="6"
+          data_line_end="7"
+          data_line="6,8"
+          count_line="2"
+        >
+          <strong>Description:</strong><br />
+          CSS-in-JS refers to a styling approach where CSS is composed using
+          JavaScript. It offers several benefits, such as scoped styles, the
+          ability to leverage JavaScript for dynamic styling, and easier
+          maintenance of styles in component-based architectures.
+        </div>
+        <div
+          class="preview-paragraph-9 preview-line 9"
+          data_line_start="9"
+          data_line_end="9"
+          data_line="9,10"
+          count_line="1"
+        >
+          <strong>Key Benefits:</strong>
+        </div>
+        <ul
+          class="preview-paragraph-10 preview-line 10 11 12 13"
+          data_line_start="10"
+          data_line_end="13"
+          data_line="10,14"
+          count_line="4"
+        >
+          <li>Scoped styles prevent conflicts.</li>
+          <li>Dynamic styling based on component state or props.</li>
+          <li>Integration with JavaScript frameworks and libraries.</li>
+        </ul>
+        <h4
+          id="2.-styled-components"
+          class="preview-paragraph-14 preview-line 14"
+          data_line_start="14"
+          data_line_end="14"
+          data_line="14,15"
+          count_line="1"
+        >
+          2. Styled Components
+        </h4>
+        <div
+          class="preview-paragraph-16 preview-line 16 17"
+          data_line_start="16"
+          data_line_end="17"
+          data_line="16,18"
+          count_line="2"
+        >
+          <strong>Description:</strong><br />
+          Styled Components is a popular CSS-in-JS library for React that uses
+          tagged template literals to style components. It allows you to write
+          actual CSS code within JavaScript and bind styles directly to
+          components.
+        </div>
+        <div
+          class="preview-paragraph-19 preview-line 19"
+          data_line_start="19"
+          data_line_end="19"
+          data_line="19,20"
+          count_line="1"
+        >
+          <strong>Example:</strong>
+        </div>
+        <div
+          class="preview-paragraph-21 preview-line 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43"
+          data_line_start="21"
+          data_line_end="43"
+          data_line="21,44"
+          count_line="23"
+          style="
+            overflow: auto;
+            position: relative;
+            overflow: auto;
+            position: relative;
+          "
+        >
+          <div
+            class="preview-paragraph-21 preview-line 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43"
+            data_line_start="21"
+            data_line_end="43"
+            data_line="21,44"
+            count_line="23"
+            style="overflow: auto; position: relative"
+          >
+            <pre><code class="hljs language-jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> styled <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;styled-components&#x27;</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Button</span> = styled.<span class="hljs-property">button</span><span class="hljs-string">`
+  background: <span class="hljs-subst">${props =&gt; props.primary ? <span class="hljs-string">&#x27;blue&#x27;</span> : <span class="hljs-string">&#x27;gray&#x27;</span>}</span>;
+  color: white;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; (
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">primary</span>&gt;</span>Primary Button<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span>&gt;</span>Secondary Button<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span>;
+</code></pre>
+            <div
+              class="mmd-clipboard-copy-container"
+              style="right: 0; top: 0; position: absolute"
+            >
+              <clipboard-copy
+                aria-label="Copy"
+                class="ClipboardButton mmd-tooltipped-no-delay"
+                tabindex="0"
+                role="button"
+                value="import React from 'react';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  background: ${props =&gt; props.primary ? 'blue' : 'gray'};
+  color: white;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
+
+const App = () =&gt; (
+  &lt;div&gt;
+    &lt;Button primary&gt;Primary Button&lt;/Button&gt;
+    &lt;Button&gt;Secondary Button&lt;/Button&gt;
+  &lt;/div&gt;
+);
+
+export default App;
+"
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                  style="margin: 0.5rem"
+                >
+                  <path
+                    d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                  ></path>
+                  <path
+                    d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                  ></path></svg
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                  style="display: none; margin: 0.5rem"
+                >
+                  <path
+                    d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                  ></path></svg
+              ></clipboard-copy>
+            </div>
+          </div>
+          <div
+            class="mmd-clipboard-copy-container"
+            style="right: 0; top: 0; position: absolute"
+          >
+            <clipboard-copy
+              aria-label="Copy"
+              class="ClipboardButton mmd-tooltipped-no-delay"
+              tabindex="0"
+              role="button"
+              value="import React from 'react';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  background: ${props =&gt; props.primary ? 'blue' : 'gray'};
+  color: white;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
+
+const App = () =&gt; (
+  &lt;div&gt;
+    &lt;Button primary&gt;Primary Button&lt;/Button&gt;
+    &lt;Button&gt;Secondary Button&lt;/Button&gt;
+  &lt;/div&gt;
+);
+
+export default App;
+"
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                style="margin: 0.5rem"
+              >
+                <path
+                  d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                ></path>
+                <path
+                  d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                ></path></svg
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                style="display: none; margin: 0.5rem"
+              >
+                <path
+                  d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                ></path></svg
+            ></clipboard-copy>
+          </div>
+        </div>
+        <h4
+          id="3.-emotion-library"
+          class="preview-paragraph-45 preview-line 45"
+          data_line_start="45"
+          data_line_end="45"
+          data_line="45,46"
+          count_line="1"
+        >
+          3. Emotion Library
+        </h4>
+        <div
+          class="preview-paragraph-47 preview-line 47 48"
+          data_line_start="47"
+          data_line_end="48"
+          data_line="47,49"
+          count_line="2"
+        >
+          <strong>Description:</strong><br />
+          Emotion is another CSS-in-JS library that provides powerful and
+          flexible styling capabilities. It offers both a styled component API
+          similar to Styled Components and a css function for creating styles.
+        </div>
+        <div
+          class="preview-paragraph-50 preview-line 50"
+          data_line_start="50"
+          data_line_end="50"
+          data_line="50,51"
+          count_line="1"
+        >
+          <strong>Example:</strong>
+        </div>
+        <div
+          class="preview-paragraph-52 preview-line 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73"
+          data_line_start="52"
+          data_line_end="73"
+          data_line="52,74"
+          count_line="22"
+          style="
+            overflow: auto;
+            position: relative;
+            overflow: auto;
+            position: relative;
+          "
+        >
+          <div
+            class="preview-paragraph-52 preview-line 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73"
+            data_line_start="52"
+            data_line_end="73"
+            data_line="52,74"
+            count_line="22"
+            style="overflow: auto; position: relative"
+          >
+            <pre><code class="hljs language-jsx"><span class="hljs-comment">/** <span class="hljs-doctag">@jsxImportSource</span> <span class="hljs-doctag">@emotion</span>/react */</span>
+<span class="hljs-keyword">import</span> { css } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@emotion/react&#x27;</span>;
+
+<span class="hljs-keyword">const</span> buttonStyle = css`<span class="language-css">
+  <span class="hljs-attribute">background</span>: blue;
+  <span class="hljs-attribute">color</span>: white;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1em</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">1em</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0.25em</span> <span class="hljs-number">1em</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid palevioletred;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span>;
+`</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; (
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">css</span>=<span class="hljs-string">{buttonStyle}</span>&gt;</span>Emotion Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span>;
+</code></pre>
+            <div
+              class="mmd-clipboard-copy-container"
+              style="right: 0; top: 0; position: absolute"
+            >
+              <clipboard-copy
+                aria-label="Copy"
+                class="ClipboardButton mmd-tooltipped-no-delay"
+                tabindex="0"
+                role="button"
+                value="/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+
+const buttonStyle = css`
+  background: blue;
+  color: white;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
+
+const App = () =&gt; (
+  &lt;div&gt;
+    &lt;button css={buttonStyle}&gt;Emotion Button&lt;/button&gt;
+  &lt;/div&gt;
+);
+
+export default App;
+"
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                  style="margin: 0.5rem"
+                >
+                  <path
+                    d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                  ></path>
+                  <path
+                    d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                  ></path></svg
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                  style="display: none; margin: 0.5rem"
+                >
+                  <path
+                    d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                  ></path></svg
+              ></clipboard-copy>
+            </div>
+          </div>
+          <div
+            class="mmd-clipboard-copy-container"
+            style="right: 0; top: 0; position: absolute"
+          >
+            <clipboard-copy
+              aria-label="Copy"
+              class="ClipboardButton mmd-tooltipped-no-delay"
+              tabindex="0"
+              role="button"
+              value="/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+
+const buttonStyle = css`
+  background: blue;
+  color: white;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
+
+const App = () =&gt; (
+  &lt;div&gt;
+    &lt;button css={buttonStyle}&gt;Emotion Button&lt;/button&gt;
+  &lt;/div&gt;
+);
+
+export default App;
+"
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                style="margin: 0.5rem"
+              >
+                <path
+                  d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                ></path>
+                <path
+                  d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                ></path></svg
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                style="display: none; margin: 0.5rem"
+              >
+                <path
+                  d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                ></path></svg
+            ></clipboard-copy>
+          </div>
+        </div>
+        <h4
+          id="4.-css-modules"
+          class="preview-paragraph-75 preview-line 75"
+          data_line_start="75"
+          data_line_end="75"
+          data_line="75,76"
+          count_line="1"
+        >
+          4. CSS Modules
+        </h4>
+        <div
+          class="preview-paragraph-77 preview-line 77 78"
+          data_line_start="77"
+          data_line_end="78"
+          data_line="77,79"
+          count_line="2"
+        >
+          <strong>Description:</strong><br />
+          CSS Modules are a CSS file where all class and animation names are
+          scoped locally by default. They can be used in JavaScript frameworks
+          to ensure that styles are applied only to the component they are
+          intended for, avoiding global scope issues.
+        </div>
+        <div
+          class="preview-paragraph-80 preview-line 80"
+          data_line_start="80"
+          data_line_end="80"
+          data_line="80,81"
+          count_line="1"
+        >
+          <strong>Example:</strong>
+        </div>
+        <div
+          class="preview-paragraph-82 preview-line 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105"
+          data_line_start="82"
+          data_line_end="105"
+          data_line="82,106"
+          count_line="24"
+          style="
+            overflow: auto;
+            position: relative;
+            overflow: auto;
+            position: relative;
+          "
+        >
+          <div
+            class="preview-paragraph-82 preview-line 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105"
+            data_line_start="82"
+            data_line_end="105"
+            data_line="82,106"
+            count_line="24"
+            style="overflow: auto; position: relative"
+          >
+            <pre><code class="hljs language-jsx"><span class="hljs-comment">// styles.module.css</span>
+.<span class="hljs-property">button</span> {
+  <span class="hljs-attr">background</span>: blue;
+  <span class="hljs-attr">color</span>: white;
+  font-<span class="hljs-attr">size</span>: 1em;
+  <span class="hljs-attr">margin</span>: 1em;
+  <span class="hljs-attr">padding</span>: <span class="hljs-number">0.</span>25em 1em;
+  <span class="hljs-attr">border</span>: 2px solid palevioletred;
+  border-<span class="hljs-attr">radius</span>: 3px;
+}
+
+<span class="hljs-comment">// App.js</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> styles <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./styles.module.css&#x27;</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; (
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{styles.button}</span>&gt;</span>CSS Module Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span>;
+</code></pre>
+            <div
+              class="mmd-clipboard-copy-container"
+              style="right: 0; top: 0; position: absolute"
+            >
+              <clipboard-copy
+                aria-label="Copy"
+                class="ClipboardButton mmd-tooltipped-no-delay"
+                tabindex="0"
+                role="button"
+                value="// styles.module.css
+.button {
+  background: blue;
+  color: white;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+}
+
+// App.js
+import React from 'react';
+import styles from './styles.module.css';
+
+const App = () =&gt; (
+  &lt;div&gt;
+    &lt;button className={styles.button}&gt;CSS Module Button&lt;/button&gt;
+  &lt;/div&gt;
+);
+
+export default App;
+"
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                  style="margin: 0.5rem"
+                >
+                  <path
+                    d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                  ></path>
+                  <path
+                    d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                  ></path></svg
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                  style="display: none; margin: 0.5rem"
+                >
+                  <path
+                    d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                  ></path></svg
+              ></clipboard-copy>
+            </div>
+          </div>
+          <div
+            class="mmd-clipboard-copy-container"
+            style="right: 0; top: 0; position: absolute"
+          >
+            <clipboard-copy
+              aria-label="Copy"
+              class="ClipboardButton mmd-tooltipped-no-delay"
+              tabindex="0"
+              role="button"
+              value="// styles.module.css
+.button {
+  background: blue;
+  color: white;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+}
+
+// App.js
+import React from 'react';
+import styles from './styles.module.css';
+
+const App = () =&gt; (
+  &lt;div&gt;
+    &lt;button className={styles.button}&gt;CSS Module Button&lt;/button&gt;
+  &lt;/div&gt;
+);
+
+export default App;
+"
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                style="margin: 0.5rem"
+              >
+                <path
+                  d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                ></path>
+                <path
+                  d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                ></path></svg
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                style="display: none; margin: 0.5rem"
+              >
+                <path
+                  d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                ></path></svg
+            ></clipboard-copy>
+          </div>
+        </div>
+        <h4
+          id="5.-best-practices-for-css-in-js"
+          class="preview-paragraph-107 preview-line 107"
+          data_line_start="107"
+          data_line_end="107"
+          data_line="107,108"
+          count_line="1"
+        >
+          5. Best Practices for CSS-in-JS
+        </h4>
+        <div
+          class="preview-paragraph-109 preview-line 109 110"
+          data_line_start="109"
+          data_line_end="110"
+          data_line="109,111"
+          count_line="2"
+        >
+          <strong>Description:</strong><br />
+          When using CSS-in-JS, it's important to follow best practices to
+          ensure maintainability, performance, and a clean codebase. Here are
+          some best practices:
+        </div>
+        <div
+          class="preview-paragraph-112 preview-line 112"
+          data_line_start="112"
+          data_line_end="112"
+          data_line="112,113"
+          count_line="1"
+        >
+          <strong>Best Practices:</strong>
+        </div>
+        <ul
+          class="preview-paragraph-113 preview-line 113 114 115 116 117 118"
+          data_line_start="113"
+          data_line_end="118"
+          data_line="113,119"
+          count_line="6"
+        >
+          <li>
+            <strong>Keep styles simple:</strong> Avoid overcomplicating styles
+            with too much logic.
+          </li>
+          <li>
+            <strong>Use theme providers:</strong> Centralize styling information
+            like colors and spacing.
+          </li>
+          <li>
+            <strong>Optimize performance:</strong> Be mindful of potential
+            performance impacts, such as unnecessary re-renders.
+          </li>
+          <li>
+            <strong>Leverage static styles:</strong> When possible, use static
+            styles to reduce the overhead of dynamic styling.
+          </li>
+          <li>
+            <strong>Organize styles logically:</strong> Group related styles
+            together and avoid deeply nested components.
+          </li>
+        </ul>
+        <div
+          class="preview-paragraph-119 preview-line 119"
+          data_line_start="119"
+          data_line_end="119"
+          data_line="119,120"
+          count_line="1"
+        >
+          <strong>Example Combining Best Practices:</strong>
+        </div>
+        <div
+          class="preview-paragraph-121 preview-line 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154"
+          data_line_start="121"
+          data_line_end="154"
+          data_line="121,155"
+          count_line="34"
+          style="
+            overflow: auto;
+            position: relative;
+            overflow: auto;
+            position: relative;
+          "
+        >
+          <div
+            class="preview-paragraph-121 preview-line 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154"
+            data_line_start="121"
+            data_line_end="154"
+            data_line="121,155"
+            count_line="34"
+            style="overflow: auto; position: relative"
+          >
+            <pre><code class="hljs language-jsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> styled, { <span class="hljs-title class_">ThemeProvider</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;styled-components&#x27;</span>;
+
+<span class="hljs-comment">// Define a theme</span>
+<span class="hljs-keyword">const</span> theme = {
+  <span class="hljs-attr">primary</span>: <span class="hljs-string">&#x27;blue&#x27;</span>,
+  <span class="hljs-attr">secondary</span>: <span class="hljs-string">&#x27;gray&#x27;</span>,
+  <span class="hljs-attr">borderRadius</span>: <span class="hljs-string">&#x27;3px&#x27;</span>,
+};
+
+<span class="hljs-comment">// Define a styled button component</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Button</span> = styled.<span class="hljs-property">button</span><span class="hljs-string">`
+  background: <span class="hljs-subst">${props =&gt; props.theme[props.variant]}</span>;
+  color: white;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: <span class="hljs-subst">${props =&gt; props.theme.borderRadius}</span>;
+`</span>;
+
+<span class="hljs-comment">// Define the app component</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; (
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ThemeProvider</span> <span class="hljs-attr">theme</span>=<span class="hljs-string">{theme}</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">&quot;primary&quot;</span>&gt;</span>Primary Button<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">variant</span>=<span class="hljs-string">&quot;secondary&quot;</span>&gt;</span>Secondary Button<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ThemeProvider</span>&gt;</span></span>
+);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span>;
+</code></pre>
+            <div
+              class="mmd-clipboard-copy-container"
+              style="right: 0; top: 0; position: absolute"
+            >
+              <clipboard-copy
+                aria-label="Copy"
+                class="ClipboardButton mmd-tooltipped-no-delay"
+                tabindex="0"
+                role="button"
+                value="import React from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+
+// Define a theme
+const theme = {
+  primary: 'blue',
+  secondary: 'gray',
+  borderRadius: '3px',
+};
+
+// Define a styled button component
+const Button = styled.button`
+  background: ${props =&gt; props.theme[props.variant]};
+  color: white;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: ${props =&gt; props.theme.borderRadius};
+`;
+
+// Define the app component
+const App = () =&gt; (
+  &lt;ThemeProvider theme={theme}&gt;
+    &lt;div&gt;
+      &lt;Button variant=&quot;primary&quot;&gt;Primary Button&lt;/Button&gt;
+      &lt;Button variant=&quot;secondary&quot;&gt;Secondary Button&lt;/Button&gt;
+    &lt;/div&gt;
+  &lt;/ThemeProvider&gt;
+);
+
+export default App;
+"
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                  style="margin: 0.5rem"
+                >
+                  <path
+                    d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                  ></path>
+                  <path
+                    d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                  ></path></svg
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                  style="display: none; margin: 0.5rem"
+                >
+                  <path
+                    d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                  ></path></svg
+              ></clipboard-copy>
+            </div>
+          </div>
+          <div
+            class="mmd-clipboard-copy-container"
+            style="right: 0; top: 0; position: absolute"
+          >
+            <clipboard-copy
+              aria-label="Copy"
+              class="ClipboardButton mmd-tooltipped-no-delay"
+              tabindex="0"
+              role="button"
+              value="import React from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+
+// Define a theme
+const theme = {
+  primary: 'blue',
+  secondary: 'gray',
+  borderRadius: '3px',
+};
+
+// Define a styled button component
+const Button = styled.button`
+  background: ${props =&gt; props.theme[props.variant]};
+  color: white;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: ${props =&gt; props.theme.borderRadius};
+`;
+
+// Define the app component
+const App = () =&gt; (
+  &lt;ThemeProvider theme={theme}&gt;
+    &lt;div&gt;
+      &lt;Button variant=&quot;primary&quot;&gt;Primary Button&lt;/Button&gt;
+      &lt;Button variant=&quot;secondary&quot;&gt;Secondary Button&lt;/Button&gt;
+    &lt;/div&gt;
+  &lt;/ThemeProvider&gt;
+);
+
+export default App;
+"
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                style="margin: 0.5rem"
+              >
+                <path
+                  d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                ></path>
+                <path
+                  d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                ></path></svg
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                style="display: none; margin: 0.5rem"
+              >
+                <path
+                  d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                ></path></svg
+            ></clipboard-copy>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/Icon/WebJaTitileIcon.png" type="image/x-icon">
+    <title>InterectiveExample</title>
+    <style>
+        /* Add your CSS here */
+        .content {
+            margin-top: 120px;
+            width: 80%;
+            height: calc(90vh - 120px);
+            /* margin: auto; */
+            margin-left: 10%;
+        }
+    </style>
+    <script>
+        function getData() {
+            const serial = localStorage.getItem('serial');
+            const link = '/InterectiveExample/Value_' + serial + '.html';
+            return link;
+        }
+
+        function loadHTMLContent(url, elementId) {
+            fetch(url)
+                .then((response) => response.text())
+                .then((data) => {
+                    const element = document.getElementById(elementId);
+                    element.innerHTML = data;
+
+                    // Manually execute any scripts in the loaded content
+                    const scripts = element.querySelectorAll('script');
+                    scripts.forEach(script => {
+                        const newScript = document.createElement('script');
+                        newScript.textContent = script.textContent;
+                        document.body.appendChild(newScript);
+                        document.body.removeChild(newScript);
+                    });
+                })
+                .catch((error) => console.error("Error loading HTML content:", error));
+        }
+
+        function run() {
+            loadHTMLContent("2_header.html", "content1");
+            const link = getData();
+            loadHTMLContent(link, "content2");
+        }
+
+        window.onload = run;
+    </script>
+</head>
+<body>
+    <!-- <div id="content1"></div> -->
+    <div id="content2" class="content"></div>
+</body>
+</html>

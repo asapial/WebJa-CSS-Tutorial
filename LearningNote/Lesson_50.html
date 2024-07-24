@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      Lesson 50: CSS Houdini
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div id="preview" class="preview scrollEditor">
+      <div id="container-ruller" />
+      <div id="preview-content">
+        <h1
+          type="title"
+          class="main-title"
+          id="Lesson 50: CSS Houdini"
+        >
+          CSS Houdini
+        </h1>
+        <h4
+          id="1.-introduction-to-houdini"
+          class="preview-paragraph-4 preview-line 4"
+          data_line_start="4"
+          data_line_end="4"
+          data_line="4,5"
+          count_line="1"
+        >
+          1. Introduction to Houdini
+        </h4>
+        <div
+          class="preview-paragraph-6 preview-line 6 7"
+          data_line_start="6"
+          data_line_end="7"
+          data_line="6,8"
+          count_line="2"
+        >
+          <strong>Description:</strong><br />
+          CSS Houdini provides developers with more control over the CSS
+          rendering pipeline. It enables the creation of custom styles and
+          animations that can be efficiently processed by the browser, improving
+          performance and enabling new design possibilities.
+        </div>
+        <div
+          class="preview-paragraph-9 preview-line 9"
+          data_line_start="9"
+          data_line_end="9"
+          data_line="9,10"
+          count_line="1"
+        >
+          <strong>Key Features:</strong>
+        </div>
+        <ul
+          class="preview-paragraph-10 preview-line 10 11 12 13"
+          data_line_start="10"
+          data_line_end="13"
+          data_line="10,14"
+          count_line="4"
+        >
+          <li>Access to the rendering pipeline</li>
+          <li>Creation of custom CSS properties</li>
+          <li>Custom paint, layout, and animation effects</li>
+        </ul>
+        <h4
+          id="2.-paint-api"
+          class="preview-paragraph-14 preview-line 14"
+          data_line_start="14"
+          data_line_end="14"
+          data_line="14,15"
+          count_line="1"
+        >
+          2. Paint API
+        </h4>
+        <div
+          class="preview-paragraph-16 preview-line 16 17"
+          data_line_start="16"
+          data_line_end="17"
+          data_line="16,18"
+          count_line="2"
+        >
+          <strong>Description:</strong><br />
+          The Paint API allows developers to create custom paint worklets that
+          can draw directly onto an element's background. These paint worklets
+          can be used to generate complex patterns, gradients, and other visual
+          effects dynamically.
+        </div>
+        <div
+          class="preview-paragraph-19 preview-line 19"
+          data_line_start="19"
+          data_line_end="19"
+          data_line="19,20"
+          count_line="1"
+        >
+          <strong>Example:</strong>
+        </div>
+        <div
+          class="preview-paragraph-21 preview-line 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62"
+          data_line_start="21"
+          data_line_end="62"
+          data_line="21,63"
+          count_line="42"
+          style="
+            overflow: auto;
+            position: relative;
+            overflow: auto;
+            position: relative;
+          "
+        >
+          <div
+            class="preview-paragraph-21 preview-line 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62"
+            data_line_start="21"
+            data_line_end="62"
+            data_line="21,63"
+            count_line="42"
+            style="overflow: auto; position: relative"
+          >
+            <pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Paint API Example<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+        <span class="hljs-selector-class">.paint-box</span> {
+            <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
+            <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;
+            <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">paint</span>(myPainter);
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable constant_">CSS</span>.<span class="hljs-property">paintWorklet</span>) {
+            <span class="hljs-variable constant_">CSS</span>.<span class="hljs-property">paintWorklet</span>.<span class="hljs-title function_">addModule</span>(<span class="hljs-string">&#x27;paint-worklet.js&#x27;</span>);
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Paint API Example<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;paint-box&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+
+// paint-worklet.js
+registerPaint(&#x27;myPainter&#x27;, class {
+    static get inputProperties() {
+        return [&#x27;--my-color&#x27;];
+    }
+    paint(ctx, geom, properties) {
+        const color = properties.get(&#x27;--my-color&#x27;).toString();
+        ctx.fillStyle = color;
+        ctx.fillRect(0, 0, geom.width, geom.height);
+        ctx.beginPath();
+        ctx.arc(geom.width / 2, geom.height / 2, geom.width / 4, 0, 2 * Math.PI);
+        ctx.fillStyle = &#x27;white&#x27;;
+        ctx.fill();
+    }
+});
+</code></pre>
+            <div
+              class="mmd-clipboard-copy-container"
+              style="right: 0; top: 0; position: absolute"
+            >
+              <clipboard-copy
+                aria-label="Copy"
+                class="ClipboardButton mmd-tooltipped-no-delay"
+                tabindex="0"
+                role="button"
+                value="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Paint API Example&lt;/title&gt;
+    &lt;style&gt;
+        .paint-box {
+            width: 200px;
+            height: 200px;
+            background-image: paint(myPainter);
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        if (CSS.paintWorklet) {
+            CSS.paintWorklet.addModule('paint-worklet.js');
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Paint API Example&lt;/h1&gt;
+    &lt;div class=&quot;paint-box&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+// paint-worklet.js
+registerPaint('myPainter', class {
+    static get inputProperties() {
+        return ['--my-color'];
+    }
+    paint(ctx, geom, properties) {
+        const color = properties.get('--my-color').toString();
+        ctx.fillStyle = color;
+        ctx.fillRect(0, 0, geom.width, geom.height);
+        ctx.beginPath();
+        ctx.arc(geom.width / 2, geom.height / 2, geom.width / 4, 0, 2 * Math.PI);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+    }
+});
+"
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                  style="margin: 0.5rem"
+                >
+                  <path
+                    d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                  ></path>
+                  <path
+                    d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                  ></path></svg
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                  style="display: none; margin: 0.5rem"
+                >
+                  <path
+                    d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                  ></path></svg
+              ></clipboard-copy>
+            </div>
+          </div>
+          <div
+            class="mmd-clipboard-copy-container"
+            style="right: 0; top: 0; position: absolute"
+          >
+            <clipboard-copy
+              aria-label="Copy"
+              class="ClipboardButton mmd-tooltipped-no-delay"
+              tabindex="0"
+              role="button"
+              value="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Paint API Example&lt;/title&gt;
+    &lt;style&gt;
+        .paint-box {
+            width: 200px;
+            height: 200px;
+            background-image: paint(myPainter);
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        if (CSS.paintWorklet) {
+            CSS.paintWorklet.addModule('paint-worklet.js');
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Paint API Example&lt;/h1&gt;
+    &lt;div class=&quot;paint-box&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+// paint-worklet.js
+registerPaint('myPainter', class {
+    static get inputProperties() {
+        return ['--my-color'];
+    }
+    paint(ctx, geom, properties) {
+        const color = properties.get('--my-color').toString();
+        ctx.fillStyle = color;
+        ctx.fillRect(0, 0, geom.width, geom.height);
+        ctx.beginPath();
+        ctx.arc(geom.width / 2, geom.height / 2, geom.width / 4, 0, 2 * Math.PI);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+    }
+});
+"
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                style="margin: 0.5rem"
+              >
+                <path
+                  d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                ></path>
+                <path
+                  d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                ></path></svg
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                style="display: none; margin: 0.5rem"
+              >
+                <path
+                  d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                ></path></svg
+            ></clipboard-copy>
+          </div>
+        </div>
+        <h4
+          id="3.-typed-om-(object-model)"
+          class="preview-paragraph-64 preview-line 64"
+          data_line_start="64"
+          data_line_end="64"
+          data_line="64,65"
+          count_line="1"
+        >
+          3. Typed OM (Object Model)
+        </h4>
+        <div
+          class="preview-paragraph-66 preview-line 66 67"
+          data_line_start="66"
+          data_line_end="67"
+          data_line="66,68"
+          count_line="2"
+        >
+          <strong>Description:</strong><br />
+          The Typed Object Model (Typed OM) provides a more powerful and
+          type-safe way to interact with CSS values in JavaScript. It replaces
+          the traditional string-based API with a set of typed objects, making
+          it easier to manipulate and perform calculations with CSS properties.
+        </div>
+        <div
+          class="preview-paragraph-69 preview-line 69"
+          data_line_start="69"
+          data_line_end="69"
+          data_line="69,70"
+          count_line="1"
+        >
+          <strong>Example:</strong>
+        </div>
+        <div
+          class="preview-paragraph-71 preview-line 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100"
+          data_line_start="71"
+          data_line_end="100"
+          data_line="71,101"
+          count_line="30"
+          style="
+            overflow: auto;
+            position: relative;
+            overflow: auto;
+            position: relative;
+          "
+        >
+          <div
+            class="preview-paragraph-71 preview-line 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100"
+            data_line_start="71"
+            data_line_end="100"
+            data_line="71,101"
+            count_line="30"
+            style="overflow: auto; position: relative"
+          >
+            <pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Typed OM Example<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+        <span class="hljs-selector-class">.typed-box</span> {
+            <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+            <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+            <span class="hljs-attribute">background-color</span>: lightblue;
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Typed OM Example<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;typed-box&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+        <span class="hljs-keyword">const</span> box = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;box&#x27;</span>);
+        <span class="hljs-keyword">const</span> computedStyle = <span class="hljs-title function_">getComputedStyle</span>(box);
+        <span class="hljs-keyword">const</span> widthValue = <span class="hljs-title class_">CSSUnitValue</span>.<span class="hljs-title function_">parse</span>(computedStyle.<span class="hljs-property">width</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(widthValue.<span class="hljs-property">value</span>, widthValue.<span class="hljs-property">unit</span>); <span class="hljs-comment">// 100, &#x27;px&#x27;</span>
+        
+        <span class="hljs-keyword">const</span> newWidth = widthValue.<span class="hljs-property">value</span> + <span class="hljs-number">50</span>;
+        box.<span class="hljs-property">attributeStyleMap</span>.<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;width&#x27;</span>, <span class="hljs-variable constant_">CSS</span>.<span class="hljs-title function_">px</span>(newWidth));
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+            <div
+              class="mmd-clipboard-copy-container"
+              style="right: 0; top: 0; position: absolute"
+            >
+              <clipboard-copy
+                aria-label="Copy"
+                class="ClipboardButton mmd-tooltipped-no-delay"
+                tabindex="0"
+                role="button"
+                value='&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Typed OM Example&lt;/title&gt;
+    &lt;style&gt;
+        .typed-box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Typed OM Example&lt;/h1&gt;
+    &lt;div class="typed-box" id="box"&gt;&lt;/div&gt;
+    &lt;script&gt;
+        const box = document.getElementById(&apos;box&apos;);
+        const computedStyle = getComputedStyle(box);
+        const widthValue = CSSUnitValue.parse(computedStyle.width);
+        console.log(widthValue.value, widthValue.unit); // 100, &apos;px&apos;
+        
+        const newWidth = widthValue.value + 50;
+        box.attributeStyleMap.set(&apos;width&apos;, CSS.px(newWidth));
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+'
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                  style="margin: 0.5rem"
+                >
+                  <path
+                    d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                  ></path>
+                  <path
+                    d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                  ></path></svg
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                  style="display: none; margin: 0.5rem"
+                >
+                  <path
+                    d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                  ></path></svg
+              ></clipboard-copy>
+            </div>
+          </div>
+          <div
+            class="mmd-clipboard-copy-container"
+            style="right: 0; top: 0; position: absolute"
+          >
+            <clipboard-copy
+              aria-label="Copy"
+              class="ClipboardButton mmd-tooltipped-no-delay"
+              tabindex="0"
+              role="button"
+              value='&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Typed OM Example&lt;/title&gt;
+    &lt;style&gt;
+        .typed-box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Typed OM Example&lt;/h1&gt;
+    &lt;div class="typed-box" id="box"&gt;&lt;/div&gt;
+    &lt;script&gt;
+        const box = document.getElementById(&apos;box&apos;);
+        const computedStyle = getComputedStyle(box);
+        const widthValue = CSSUnitValue.parse(computedStyle.width);
+        console.log(widthValue.value, widthValue.unit); // 100, &apos;px&apos;
+        
+        const newWidth = widthValue.value + 50;
+        box.attributeStyleMap.set(&apos;width&apos;, CSS.px(newWidth));
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+'
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                style="margin: 0.5rem"
+              >
+                <path
+                  d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                ></path>
+                <path
+                  d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                ></path></svg
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                style="display: none; margin: 0.5rem"
+              >
+                <path
+                  d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                ></path></svg
+            ></clipboard-copy>
+          </div>
+        </div>
+        <h4
+          id="4.-layout-api"
+          class="preview-paragraph-102 preview-line 102"
+          data_line_start="102"
+          data_line_end="102"
+          data_line="102,103"
+          count_line="1"
+        >
+          4. Layout API
+        </h4>
+        <div
+          class="preview-paragraph-104 preview-line 104 105"
+          data_line_start="104"
+          data_line_end="105"
+          data_line="104,106"
+          count_line="2"
+        >
+          <strong>Description:</strong><br />
+          The Layout API allows developers to define custom layout algorithms
+          that can be used to lay out elements on the page. This provides a way
+          to create new layout behaviors that are not natively supported by CSS.
+        </div>
+        <div
+          class="preview-paragraph-107 preview-line 107"
+          data_line_start="107"
+          data_line_end="107"
+          data_line="107,108"
+          count_line="1"
+        >
+          <strong>Example:</strong>
+        </div>
+        <div
+          class="preview-paragraph-109 preview-line 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157"
+          data_line_start="109"
+          data_line_end="157"
+          data_line="109,158"
+          count_line="49"
+          style="
+            overflow: auto;
+            position: relative;
+            overflow: auto;
+            position: relative;
+          "
+        >
+          <div
+            class="preview-paragraph-109 preview-line 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157"
+            data_line_start="109"
+            data_line_end="157"
+            data_line="109,158"
+            count_line="49"
+            style="overflow: auto; position: relative"
+          >
+            <pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Layout API Example<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+        <span class="hljs-selector-class">.layout-box</span> {
+            <span class="hljs-attribute">display</span>: <span class="hljs-built_in">layout</span>(myCustomLayout);
+            <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;
+            <span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;
+            <span class="hljs-attribute">background-color</span>: lightgray;
+        }
+        <span class="hljs-selector-class">.layout-box</span> &gt; <span class="hljs-selector-tag">div</span> {
+            <span class="hljs-attribute">background-color</span>: lightblue;
+            <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid blue;
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+        <span class="hljs-keyword">if</span> (<span class="hljs-string">&#x27;layoutWorklet&#x27;</span> <span class="hljs-keyword">in</span> <span class="hljs-variable constant_">CSS</span>) {
+            <span class="hljs-variable constant_">CSS</span>.<span class="hljs-property">layoutWorklet</span>.<span class="hljs-title function_">addModule</span>(<span class="hljs-string">&#x27;layout-worklet.js&#x27;</span>);
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Layout API Example<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;layout-box&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 50px; height: 50px;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 100px; height: 100px;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 75px; height: 75px;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+
+// layout-worklet.js
+registerLayout(&#x27;myCustomLayout&#x27;, class {
+    *layout(children, edges, constraints, styleMap) {
+        let x = 0, y = 0;
+        for (const child of children) {
+            child.style.position = &#x27;absolute&#x27;;
+            child.style.left = CSS.px(x);
+            child.style.top = CSS.px(y);
+            x += child.styleMap.get(&#x27;width&#x27;).value;
+            y += child.styleMap.get(&#x27;height&#x27;).value;
+        }
+    }
+});
+</code></pre>
+            <div
+              class="mmd-clipboard-copy-container"
+              style="right: 0; top: 0; position: absolute"
+            >
+              <clipboard-copy
+                aria-label="Copy"
+                class="ClipboardButton mmd-tooltipped-no-delay"
+                tabindex="0"
+                role="button"
+                value='&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Layout API Example&lt;/title&gt;
+    &lt;style&gt;
+        .layout-box {
+            display: layout(myCustomLayout);
+            width: 300px;
+            height: 300px;
+            background-color: lightgray;
+        }
+        .layout-box &gt; div {
+            background-color: lightblue;
+            border: 1px solid blue;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        if (&apos;layoutWorklet&apos; in CSS) {
+            CSS.layoutWorklet.addModule(&apos;layout-worklet.js&apos;);
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Layout API Example&lt;/h1&gt;
+    &lt;div class="layout-box"&gt;
+        &lt;div style="width: 50px; height: 50px;"&gt;&lt;/div&gt;
+        &lt;div style="width: 100px; height: 100px;"&gt;&lt;/div&gt;
+        &lt;div style="width: 75px; height: 75px;"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+// layout-worklet.js
+registerLayout(&apos;myCustomLayout&apos;, class {
+    *layout(children, edges, constraints, styleMap) {
+        let x = 0, y = 0;
+        for (const child of children) {
+            child.style.position = &apos;absolute&apos;;
+            child.style.left = CSS.px(x);
+            child.style.top = CSS.px(y);
+            x += child.styleMap.get(&apos;width&apos;).value;
+            y += child.styleMap.get(&apos;height&apos;).value;
+        }
+    }
+});
+'
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                  style="margin: 0.5rem"
+                >
+                  <path
+                    d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                  ></path>
+                  <path
+                    d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                  ></path></svg
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                  style="display: none; margin: 0.5rem"
+                >
+                  <path
+                    d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                  ></path></svg
+              ></clipboard-copy>
+            </div>
+          </div>
+          <div
+            class="mmd-clipboard-copy-container"
+            style="right: 0; top: 0; position: absolute"
+          >
+            <clipboard-copy
+              aria-label="Copy"
+              class="ClipboardButton mmd-tooltipped-no-delay"
+              tabindex="0"
+              role="button"
+              value='&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Layout API Example&lt;/title&gt;
+    &lt;style&gt;
+        .layout-box {
+            display: layout(myCustomLayout);
+            width: 300px;
+            height: 300px;
+            background-color: lightgray;
+        }
+        .layout-box &gt; div {
+            background-color: lightblue;
+            border: 1px solid blue;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        if (&apos;layoutWorklet&apos; in CSS) {
+            CSS.layoutWorklet.addModule(&apos;layout-worklet.js&apos;);
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Layout API Example&lt;/h1&gt;
+    &lt;div class="layout-box"&gt;
+        &lt;div style="width: 50px; height: 50px;"&gt;&lt;/div&gt;
+        &lt;div style="width: 100px; height: 100px;"&gt;&lt;/div&gt;
+        &lt;div style="width: 75px; height: 75px;"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+// layout-worklet.js
+registerLayout(&apos;myCustomLayout&apos;, class {
+    *layout(children, edges, constraints, styleMap) {
+        let x = 0, y = 0;
+        for (const child of children) {
+            child.style.position = &apos;absolute&apos;;
+            child.style.left = CSS.px(x);
+            child.style.top = CSS.px(y);
+            x += child.styleMap.get(&apos;width&apos;).value;
+            y += child.styleMap.get(&apos;height&apos;).value;
+        }
+    }
+});
+'
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                style="margin: 0.5rem"
+              >
+                <path
+                  d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                ></path>
+                <path
+                  d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                ></path></svg
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                style="display: none; margin: 0.5rem"
+              >
+                <path
+                  d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                ></path></svg
+            ></clipboard-copy>
+          </div>
+        </div>
+        <h4
+          id="5.-houdini-and-performance"
+          class="preview-paragraph-159 preview-line 159"
+          data_line_start="159"
+          data_line_end="159"
+          data_line="159,160"
+          count_line="1"
+        >
+          5. Houdini and Performance
+        </h4>
+        <div
+          class="preview-paragraph-161 preview-line 161 162"
+          data_line_start="161"
+          data_line_end="162"
+          data_line="161,163"
+          count_line="2"
+        >
+          <strong>Description:</strong><br />
+          Houdini enhances performance by allowing developers to hook into the
+          rendering pipeline. By creating custom paint, layout, and animation
+          effects, you can achieve highly optimized performance for complex
+          visual effects that would be inefficient or impossible with
+          traditional CSS.
+        </div>
+        <div
+          class="preview-paragraph-164 preview-line 164"
+          data_line_start="164"
+          data_line_end="164"
+          data_line="164,165"
+          count_line="1"
+        >
+          <strong>Key Points:</strong>
+        </div>
+        <ul
+          class="preview-paragraph-165 preview-line 165 166 167 168"
+          data_line_start="165"
+          data_line_end="168"
+          data_line="165,169"
+          count_line="4"
+        >
+          <li>
+            Reduces the need for JavaScript-driven animations and layouts.
+          </li>
+          <li>Enables efficient, browser-native execution of custom styles.</li>
+          <li>Allows for more creative and performant designs.</li>
+        </ul>
+        <div
+          class="preview-paragraph-169 preview-line 169"
+          data_line_start="169"
+          data_line_end="169"
+          data_line="169,170"
+          count_line="1"
+        >
+          <strong>Example:</strong>
+        </div>
+        <div
+          class="preview-paragraph-171 preview-line 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206"
+          data_line_start="171"
+          data_line_end="206"
+          data_line="171,207"
+          count_line="36"
+          style="
+            overflow: auto;
+            position: relative;
+            overflow: auto;
+            position: relative;
+          "
+        >
+          <div
+            class="preview-paragraph-171 preview-line 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206"
+            data_line_start="171"
+            data_line_end="206"
+            data_line="171,207"
+            count_line="36"
+            style="overflow: auto; position: relative"
+          >
+            <pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Houdini and Performance Example<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+        <span class="hljs-selector-class">.performance-box</span> {
+            <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+            <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+            <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">paint</span>(performancePainter);
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable constant_">CSS</span>.<span class="hljs-property">paintWorklet</span>) {
+            <span class="hljs-variable constant_">CSS</span>.<span class="hljs-property">paintWorklet</span>.<span class="hljs-title function_">addModule</span>(<span class="hljs-string">&#x27;performance-painter.js&#x27;</span>);
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Houdini and Performance Example<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;performance-box&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+
+// performance-painter.js
+registerPaint(&#x27;performancePainter&#x27;, class {
+    paint(ctx, geom) {
+        ctx.fillStyle = &#x27;blue&#x27;;
+        ctx.fillRect(0, 0, geom.width, geom.height);
+        ctx.fillStyle = &#x27;white&#x27;;
+        ctx.fillText(&#x27;Houdini&#x27;, geom.width / 2, geom.height / 2);
+    }
+});
+</code></pre>
+            <div
+              class="mmd-clipboard-copy-container"
+              style="right: 0; top: 0; position: absolute"
+            >
+              <clipboard-copy
+                aria-label="Copy"
+                class="ClipboardButton mmd-tooltipped-no-delay"
+                tabindex="0"
+                role="button"
+                value="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Houdini and Performance Example&lt;/title&gt;
+    &lt;style&gt;
+        .performance-box {
+            width: 100px;
+            height: 100px;
+            background-image: paint(performancePainter);
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        if (CSS.paintWorklet) {
+            CSS.paintWorklet.addModule('performance-painter.js');
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Houdini and Performance Example&lt;/h1&gt;
+    &lt;div class=&quot;performance-box&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+// performance-painter.js
+registerPaint('performancePainter', class {
+    paint(ctx, geom) {
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(0, 0, geom.width, geom.height);
+        ctx.fillStyle = 'white';
+        ctx.fillText('Houdini', geom.width / 2, geom.height / 2);
+    }
+});
+"
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                  style="margin: 0.5rem"
+                >
+                  <path
+                    d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                  ></path>
+                  <path
+                    d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                  ></path></svg
+                ><svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  version="1.1"
+                  width="16"
+                  data-view-component="true"
+                  class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                  style="display: none; margin: 0.5rem"
+                >
+                  <path
+                    d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                  ></path></svg
+              ></clipboard-copy>
+            </div>
+          </div>
+          <div
+            class="mmd-clipboard-copy-container"
+            style="right: 0; top: 0; position: absolute"
+          >
+            <clipboard-copy
+              aria-label="Copy"
+              class="ClipboardButton mmd-tooltipped-no-delay"
+              tabindex="0"
+              role="button"
+              value="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Houdini and Performance Example&lt;/title&gt;
+    &lt;style&gt;
+        .performance-box {
+            width: 100px;
+            height: 100px;
+            background-image: paint(performancePainter);
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        if (CSS.paintWorklet) {
+            CSS.paintWorklet.addModule('performance-painter.js');
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Houdini and Performance Example&lt;/h1&gt;
+    &lt;div class=&quot;performance-box&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+// performance-painter.js
+registerPaint('performancePainter', class {
+    paint(ctx, geom) {
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(0, 0, geom.width, geom.height);
+        ctx.fillStyle = 'white';
+        ctx.fillText('Houdini', geom.width / 2, geom.height / 2);
+    }
+});
+"
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-copy-icon"
+                style="margin: 0.5rem"
+              >
+                <path
+                  d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+                ></path>
+                <path
+                  d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+                ></path></svg
+              ><svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="mmd-clipboard-icon mmd-clipboard-check-icon"
+                style="display: none; margin: 0.5rem"
+              >
+                <path
+                  d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"
+                ></path></svg
+            ></clipboard-copy>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

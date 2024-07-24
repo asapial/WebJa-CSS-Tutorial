@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 19: CSS Filters</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+        }
+        .controls {
+            flex: 2;
+            padding: 20px;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="blur">Blur:</label>
+                <select id="blur" onchange="toggleCustomInput(this, 'blur-custom')">
+                    <option value="0px">0px</option>
+                    <option value="2px">2px</option>
+                    <option value="5px">5px</option>
+                    <option value="10px">10px</option>
+                    <option value="15px">15px</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <input type="text" id="blur-custom" placeholder="Enter custom value (e.g., 20px)" style="display: none;" oninput="updateFilter()">
+            </div>
+            <div class="control-group">
+                <label for="brightness">Brightness:</label>
+                <select id="brightness" onchange="toggleCustomInput(this, 'brightness-custom')">
+                    <option value="0.5">0.5</option>
+                    <option value="1">1</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">2</option>
+                    <option value="2.5">2.5</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <input type="text" id="brightness-custom" placeholder="Enter custom value (e.g., 1.2)" style="display: none;" oninput="updateFilter()">
+            </div>
+            <div class="control-group">
+                <label for="contrast">Contrast:</label>
+                <select id="contrast" onchange="toggleCustomInput(this, 'contrast-custom')">
+                    <option value="0.5">0.5</option>
+                    <option value="1">1</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">2</option>
+                    <option value="2.5">2.5</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <input type="text" id="contrast-custom" placeholder="Enter custom value (e.g., 1.8)" style="display: none;" oninput="updateFilter()">
+            </div>
+            <div class="control-group">
+                <label for="drop-shadow">Drop Shadow:</label>
+                <input type="text" id="drop-shadow" placeholder="10px 10px 5px #000000" oninput="updateFilter()">
+            </div>
+            <div class="control-group">
+                <label for="grayscale">Grayscale:</label>
+                <select id="grayscale" onchange="toggleCustomInput(this, 'grayscale-custom')">
+                    <option value="0">0</option>
+                    <option value="0.5">0.5</option>
+                    <option value="1">1</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <input type="text" id="grayscale-custom" placeholder="Enter custom value (e.g., 0.7)" style="display: none;" oninput="updateFilter()">
+            </div>
+        </div>
+        <div class="output">
+            <img src="example.jpg" alt="Example Image" id="example">
+        </div>
+        <div class="css-output" id="css-output">
+            filter: none;
+        </div>
+    </div>
+
+    <script>
+        const example = document.getElementById('example');
+        const cssOutput = document.getElementById('css-output');
+
+        const blur = document.getElementById('blur');
+        const blurCustom = document.getElementById('blur-custom');
+        const brightness = document.getElementById('brightness');
+        const brightnessCustom = document.getElementById('brightness-custom');
+        const contrast = document.getElementById('contrast');
+        const contrastCustom = document.getElementById('contrast-custom');
+        const dropShadow = document.getElementById('drop-shadow');
+        const grayscale = document.getElementById('grayscale');
+        const grayscaleCustom = document.getElementById('grayscale-custom');
+
+        const toggleCustomInput = (selectElement, customInputId) => {
+            const customInput = document.getElementById(customInputId);
+            if (selectElement.value === 'custom') {
+                customInput.style.display = 'block';
+            } else {
+                customInput.style.display = 'none';
+                updateFilter();
+            }
+        };
+
+        const updateFilter = () => {
+            const blurValue = blur.value === 'custom' ? blurCustom.value : blur.value;
+            const brightnessValue = brightness.value === 'custom' ? brightnessCustom.value : brightness.value;
+            const contrastValue = contrast.value === 'custom' ? contrastCustom.value : contrast.value;
+            const dropShadowValue = dropShadow.value || 'none';
+            const grayscaleValue = grayscale.value === 'custom' ? grayscaleCustom.value : grayscale.value;
+
+            const filter = `blur(${blurValue}) brightness(${brightnessValue}) contrast(${contrastValue}) drop-shadow(${dropShadowValue}) grayscale(${grayscaleValue})`;
+            example.style.filter = filter;
+            cssOutput.textContent = `filter: ${filter};`;
+        };
+
+        blur.addEventListener('change', () => {
+            toggleCustomInput(blur, 'blur-custom');
+            updateFilter();
+        });
+        brightness.addEventListener('change', () => {
+            toggleCustomInput(brightness, 'brightness-custom');
+            updateFilter();
+        });
+        contrast.addEventListener('change', () => {
+            toggleCustomInput(contrast, 'contrast-custom');
+            updateFilter();
+        });
+        grayscale.addEventListener('change', () => {
+            toggleCustomInput(grayscale, 'grayscale-custom');
+            updateFilter();
+        });
+
+        blurCustom.addEventListener('input', updateFilter);
+        brightnessCustom.addEventListener('input', updateFilter);
+        contrastCustom.addEventListener('input', updateFilter);
+        grayscaleCustom.addEventListener('input', updateFilter);
+        dropShadow.addEventListener('input', updateFilter);
+    </script>
+</body>
+</html>

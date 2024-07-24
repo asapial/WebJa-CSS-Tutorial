@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 22: Table Styling</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+        }
+        .controls {
+            flex: 2;
+            padding: 20px;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+            padding: 20px;
+            overflow: auto;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .zebra tbody tr:nth-child(odd) {
+            background-color: #333;
+        }
+        .zebra tbody tr:nth-child(even) {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="style-type">Style Type:</label>
+                <select id="style-type" onchange="updateStyleOptions()">
+                    <option value="basic">Basic Table Styling</option>
+                    <option value="borders">Table Borders</option>
+                    <option value="padding">Table Padding and Spacing</option>
+                    <option value="zebra">Zebra Stripes</option>
+                    <option value="responsive">Responsive Tables</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="style-value">Style Value:</label>
+                <select id="style-value" onchange="updateExample()">
+                    <!-- Options will be dynamically updated based on style type -->
+                </select>
+                <input type="text" id="custom-style-value" placeholder="Enter custom value" style="display: none;" oninput="updateExample()">
+            </div>
+        </div>
+        <div class="output">
+            <table id="example-table">
+                <thead>
+                    <tr>
+                        <th>Header 1</th>
+                        <th>Header 2</th>
+                        <th>Header 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Row 1, Cell 1</td>
+                        <td>Row 1, Cell 2</td>
+                        <td>Row 1, Cell 3</td>
+                    </tr>
+                    <tr>
+                        <td>Row 2, Cell 1</td>
+                        <td>Row 2, Cell 2</td>
+                        <td>Row 2, Cell 3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="css-output" id="css-output">
+            /* Applied CSS will be shown here */
+        </div>
+    </div>
+
+    <script>
+        const styleType = document.getElementById('style-type');
+        const styleValue = document.getElementById('style-value');
+        const customStyleValue = document.getElementById('custom-style-value');
+        const exampleTable = document.getElementById('example-table');
+        const cssOutput = document.getElementById('css-output');
+
+        const styleOptions = {
+            basic: ['background-color: #444;', 'color: #fff;', 'font-size: 16px;', 'custom'],
+            borders: ['border: 1px solid #fff;', 'border: 2px dashed #fff;', 'border: 3px double #fff;', 'custom'],
+            padding: ['padding: 5px;', 'padding: 10px;', 'padding: 15px;', 'custom'],
+            zebra: ['tbody tr:nth-child(odd) { background-color: #333; }', 'tbody tr:nth-child(even) { background-color: #444; }', 'custom'],
+            responsive: ['table { width: 100%; }', 'table { display: block; overflow-x: auto; }', 'custom']
+        };
+
+        const updateStyleOptions = () => {
+            const selectedType = styleType.value;
+            styleValue.innerHTML = '';
+            styleOptions[selectedType].forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.textContent = option;
+                styleValue.appendChild(opt);
+            });
+            toggleCustomInput();
+            updateExample();
+        };
+
+        const toggleCustomInput = () => {
+            if (styleValue.value === 'custom') {
+                customStyleValue.style.display = 'block';
+            } else {
+                customStyleValue.style.display = 'none';
+            }
+        };
+
+        const updateExample = () => {
+            const selectedType = styleType.value;
+            let selectedValue = styleValue.value;
+            if (selectedValue === 'custom') {
+                selectedValue = customStyleValue.value;
+            }
+
+            const styleSheet = document.createElement('style');
+            styleSheet.type = 'text/css';
+
+            let cssRule;
+            switch (selectedType) {
+                case 'basic':
+                    cssRule = `#example-table { ${selectedValue} }`;
+                    break;
+                case 'borders':
+                    cssRule = `#example-table, #example-table th, #example-table td { ${selectedValue} }`;
+                    break;
+                case 'padding':
+                    cssRule = `#example-table th, #example-table td { ${selectedValue} }`;
+                    break;
+                case 'zebra':
+                    cssRule = `#example-table { border-collapse: collapse; } ${selectedValue}`;
+                    break;
+                case 'responsive':
+                    cssRule = `#example-table { ${selectedValue} }`;
+                    break;
+            }
+
+            styleSheet.innerHTML = cssRule;
+            document.head.appendChild(styleSheet);
+
+            cssOutput.textContent = cssRule;
+        };
+
+        updateStyleOptions();
+        styleType.addEventListener('change', updateStyleOptions);
+        styleValue.addEventListener('change', () => {
+            toggleCustomInput();
+            updateExample();
+        });
+        customStyleValue.addEventListener('input', updateExample);
+    </script>
+</body>
+</html>

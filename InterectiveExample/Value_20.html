@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 20: Advanced Selectors</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark background */
+            color: #ddd; /* Light text color */
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+        }
+        .controls {
+            flex: 2;
+            padding: 20px;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+            padding: 10px;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+            padding: 20px;
+            color: #ddd;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .parent {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+        .child, .sibling, .descendant {
+            width: 100px;
+            height: 100px;
+            background-color: #ff5722;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .nested-parent {
+            display: flex;
+            gap: 10px;
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .nested-child {
+            width: 80px;
+            height: 80px;
+            background-color: #ffcc00;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="selector-type">Selector Type</label>
+                <select id="selector-type">
+                    <option value="child">Child Combinator</option>
+                    <option value="sibling">Sibling Combinator</option>
+                    <option value="descendant">Descendant Selector</option>
+                    <option value="universal">Universal Selector</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="custom-value">Custom Value (background color)</label>
+                <input type="text" id="custom-value" placeholder="Enter color value">
+            </div>
+        </div>
+        <div class="output">
+            <div class="parent" id="example">
+                <div class="child">A</div>
+                <div class="sibling">B</div>
+                <div class="descendant">C</div>
+                <div class="nested-parent">
+                    <div class="nested-child">D</div>
+                    <div class="nested-child">E</div>
+                </div>
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            /* Applied CSS will be displayed here */
+        </div>
+    </div>
+
+    <script>
+        const example = document.getElementById('example');
+        const cssOutput = document.getElementById('css-output');
+        const selectorType = document.getElementById('selector-type');
+        const customValue = document.getElementById('custom-value');
+
+        const updateExample = () => {
+            const type = selectorType.value;
+            const value = customValue.value || 'yellow';
+
+            let css = '';
+            if (type === 'child') {
+                css = `.parent > .child { background-color: ${value}; }`;
+            } else if (type === 'sibling') {
+                css = `.child + .sibling { background-color: ${value}; }`;
+            } else if (type === 'descendant') {
+                css = `.parent .descendant { background-color: ${value}; }`;
+            } else if (type === 'universal') {
+                css = `.parent * { background-color: ${value}; }`;
+            }
+
+            const style = document.createElement('style');
+            style.innerHTML = css;
+            document.head.appendChild(style);
+
+            cssOutput.textContent = css;
+        };
+
+        selectorType.addEventListener('change', updateExample);
+        customValue.addEventListener('input', updateExample);
+
+        updateExample();
+    </script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 36: CSS Counters</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 1000px;
+            height: 70%;
+        }
+        .controls {
+            flex: 2;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 100%;
+            margin-right: 10px;
+        }
+        .css-output {
+            flex: 1;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 100%;
+            overflow: auto;
+            padding: 10px;
+        }
+        .control-group {
+            margin-bottom: 10px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .example-container {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .example-list {
+            counter-reset: section;
+            list-style: none;
+            padding-left: 20px;
+        }
+        .example-item {
+            counter-increment: section;
+            margin-bottom: 10px;
+        }
+        .example-item::before {
+            content: counter(section) ". ";
+            color: #ff5722;
+            font-weight: bold;
+        }
+        .nested-list {
+            counter-reset: subsection;
+            list-style: none;
+            padding-left: 20px;
+        }
+        .nested-item {
+            counter-increment: subsection;
+        }
+        .nested-item::before {
+            content: counter(section) "." counter(subsection) " ";
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="counter-increment">Counter Increment:</label>
+                <select id="counter-increment">
+                    <option value="section">section</option>
+                    <option value="subsection">subsection</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <input type="text" id="custom-increment" placeholder="Enter custom increment" style="display:none;">
+            </div>
+            <div class="control-group">
+                <label for="counter-reset">Counter Reset:</label>
+                <select id="counter-reset">
+                    <option value="section">section</option>
+                    <option value="subsection">subsection</option>
+                    <option value="none">none</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <input type="text" id="custom-reset" placeholder="Enter custom reset" style="display:none;">
+            </div>
+            <div class="control-group">
+                <label for="nested-counters">Nested Counters:</label>
+                <select id="nested-counters">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="counter-styling">Counter Styling:</label>
+                <select id="counter-styling">
+                    <option value="default">Default</option>
+                    <option value="styled">Styled</option>
+                </select>
+            </div>
+        </div>
+        <div class="output">
+            <div class="example-container" id="example-container">
+                <ol class="example-list" id="example-list">
+                    <li class="example-item">Item 1</li>
+                    <li class="example-item">Item 2</li>
+                    <li class="example-item">Item 3
+                        <ol class="nested-list">
+                            <li class="nested-item">Sub-item 1</li>
+                            <li class="nested-item">Sub-item 2</li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            <pre id="css-code"></pre>
+        </div>
+    </div>
+
+    <script>
+        const incrementSelect = document.getElementById('counter-increment');
+        const resetSelect = document.getElementById('counter-reset');
+        const nestedCountersSelect = document.getElementById('nested-counters');
+        const stylingSelect = document.getElementById('counter-styling');
+        const customIncrementInput = document.getElementById('custom-increment');
+        const customResetInput = document.getElementById('custom-reset');
+        const cssCode = document.getElementById('css-code');
+        const exampleList = document.getElementById('example-list');
+
+        function updateCSS() {
+            const incrementVal = incrementSelect.value === 'custom' ? customIncrementInput.value : incrementSelect.value;
+            const resetVal = resetSelect.value === 'custom' ? customResetInput.value : resetSelect.value;
+            const nestedCountersVal = nestedCountersSelect.value;
+            const stylingVal = stylingSelect.value;
+
+            const css = `
+.example-list {
+    counter-reset: ${resetVal === 'none' ? '' : resetVal};
+    list-style: none;
+    padding-left: 20px;
+}
+.example-item {
+    counter-increment: ${incrementVal};
+    margin-bottom: 10px;
+}
+.example-item::before {
+    content: counter(${incrementVal === 'subsection' ? 'section' : incrementVal}) ". ";
+    ${stylingVal === 'styled' ? 'color: #ff5722; font-weight: bold;' : ''}
+}
+${nestedCountersVal === 'yes' ? `
+.nested-list {
+    counter-reset: subsection;
+    list-style: none;
+    padding-left: 20px;
+}
+.nested-item {
+    counter-increment: subsection;
+}
+.nested-item::before {
+    content: counter(section) "." counter(subsection) " ";
+    color: #4caf50;
+}
+` : ''}
+`;
+
+            cssCode.textContent = css;
+
+            // Apply styles dynamically
+            exampleList.style.counterReset = resetVal === 'none' ? '' : resetVal;
+            Array.from(document.getElementsByClassName('example-item')).forEach(item => {
+                item.style.counterIncrement = incrementVal;
+                item.style.marginBottom = '10px';
+                item.style.listStyle = 'none';
+                if (stylingVal === 'styled') {
+                    item.style.color = '#ff5722';
+                    item.style.fontWeight = 'bold';
+                } else {
+                    item.style.color = '';
+                    item.style.fontWeight = '';
+                }
+            });
+            const nestedLists = document.getElementsByClassName('nested-list');
+            const nestedItems = document.getElementsByClassName('nested-item');
+            if (nestedCountersVal === 'yes') {
+                Array.from(nestedLists).forEach(list => {
+                    list.style.counterReset = 'subsection';
+                    list.style.listStyle = 'none';
+                    list.style.paddingLeft = '20px';
+                });
+                Array.from(nestedItems).forEach(item => {
+                    item.style.counterIncrement = 'subsection';
+                    item.style.color = '#4caf50';
+                });
+            } else {
+                Array.from(nestedLists).forEach(list => {
+                    list.style.counterReset = '';
+                    list.style.listStyle = '';
+                    list.style.paddingLeft = '';
+                });
+                Array.from(nestedItems).forEach(item => {
+                    item.style.counterIncrement = '';
+                    item.style.color = '';
+                });
+            }
+        }
+
+        incrementSelect.addEventListener('change', () => {
+            if (incrementSelect.value === 'custom') {
+                customIncrementInput.style.display = 'block';
+            } else {
+                customIncrementInput.style.display = 'none';
+                updateCSS();
+            }
+        });
+
+        customIncrementInput.addEventListener('input', updateCSS);
+
+        resetSelect.addEventListener('change', () => {
+            if (resetSelect.value === 'custom') {
+                customResetInput.style.display = 'block';
+            } else {
+                customResetInput.style.display = 'none';
+                updateCSS();
+            }
+        });
+
+        customResetInput.addEventListener('input', updateCSS);
+
+        nestedCountersSelect.addEventListener('change', updateCSS);
+        stylingSelect.addEventListener('change', updateCSS);
+
+        updateCSS();
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 20: Advanced Selectors</title>
+    <style>
+        body {
+            background-color: #1b1b1b;
+            color: #ddd;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            background-color: #333;
+            border: 1px solid #444;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+        }
+        .controls {
+            flex: 2;
+            padding: 20px;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #444;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+            margin-right: 20px;
+        }
+        .css-output {
+            flex: 1;
+            background-color: #1e1e1e;
+            border: 1px solid #444;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+            padding: 20px;
+            color: #fff;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+        }
+        .box-container {
+            display: flex;
+            gap: 10px;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #ff5722;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="attribute-selector">Attribute Selector:</label>
+                <select id="attribute-selector">
+                    <option value="">Select Attribute</option>
+                    <option value="[data-type='primary']">[data-type='primary']</option>
+                    <option value="[data-type='secondary']">[data-type='secondary']</option>
+                    <option value="[data-level='1']">[data-level='1']</option>
+                    <option value="[data-level='2']">[data-level='2']</option>
+                </select>
+            </div>
+        </div>
+        <div class="output">
+            <div class="box-container" id="box-container">
+                <div class="box" data-type="primary" data-level="1">Box 1</div>
+                <div class="box" data-type="secondary" data-level="2">Box 2</div>
+                <div class="box" data-type="primary" data-level="2">Box 3</div>
+                <div class="box" data-type="secondary" data-level="1">Box 4</div>
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            /* Applied CSS will be displayed here */
+        </div>
+    </div>
+
+    <script>
+        const attributeSelector = document.getElementById('attribute-selector');
+        const boxContainer = document.getElementById('box-container');
+        const cssOutput = document.getElementById('css-output');
+
+        attributeSelector.addEventListener('change', () => {
+            const selectedAttribute = attributeSelector.value;
+            const boxes = boxContainer.querySelectorAll('.box');
+            
+            // Reset styles
+            boxes.forEach(box => box.style.backgroundColor = '#ff5722');
+
+            if (selectedAttribute) {
+                // Apply new styles
+                const selectedBoxes = boxContainer.querySelectorAll(`.box${selectedAttribute}`);
+                selectedBoxes.forEach(box => box.style.backgroundColor = '#4caf50');
+
+                // Display applied CSS
+                cssOutput.textContent = `.box${selectedAttribute} {\n  background-color: #4caf50;\n}`;
+            } else {
+                // Reset CSS output
+                cssOutput.textContent = '';
+            }
+        });
+    </script>
+</body>
+</html>

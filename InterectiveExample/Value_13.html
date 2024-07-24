@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 13: Transformations</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+        }
+        .controls {
+            flex: 2;
+            padding: 20px;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+            position: relative;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+            padding: 20px;
+            white-space: pre-wrap;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .example-box {
+            width: 100px;
+            height: 100px;
+            background-color: #ff5722;
+            border-radius: 10px;
+            transition: transform 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+         
+            <div class="control-group">
+                <label for="transformType">Transform Type</label>
+                <select id="transformType">
+                    <option value="translate">translate</option>
+                    <option value="rotate">rotate</option>
+                    <option value="scale">scale</option>
+                    <option value="skew">skew</option>
+                    <option value="matrix">matrix</option>
+                </select>
+            </div>
+            <div class="control-group" id="valueInputs">
+                <label for="transformValueX">Value X</label>
+                <input type="text" id="transformValueX" placeholder="Enter value for X (e.g., 50px, 45deg, 1.5, etc.)">
+                <label for="transformValueY">Value Y</label>
+                <input type="text" id="transformValueY" placeholder="Enter value for Y (e.g., 50px, 45deg, 1.5, etc.)">
+            </div>
+        </div>
+        <div class="output">
+            <div class="example-box"></div>
+        </div>
+        <div class="css-output" id="finalCss">
+            .example-box {<br>
+            &nbsp;&nbsp;transform: none;<br>
+            }
+        </div>
+    </div>
+
+    <script>
+        const exampleBox = document.querySelector('.example-box');
+        const transformType = document.getElementById('transformType');
+        const transformValueX = document.getElementById('transformValueX');
+        const transformValueY = document.getElementById('transformValueY');
+        const finalCss = document.getElementById('finalCss');
+        const valueInputs = document.getElementById('valueInputs');
+
+        const updateInputs = () => {
+            let type = transformType.value;
+            if (type === 'matrix') {
+                valueInputs.innerHTML = `
+                    <label for="matrixValues">Matrix Values</label>
+                    <input type="text" id="matrixValues" placeholder="Enter 6 values (e.g., 1, 0, 0, 1, 0, 0)">
+                `;
+            } else {
+                valueInputs.innerHTML = `
+                    <label for="transformValueX">Value X</label>
+                    <input type="text" id="transformValueX" placeholder="Enter value for X (e.g., 50px, 45deg, 1.5, etc.)">
+                    ${type !== 'rotate' ? `
+                    <label for="transformValueY">Value Y</label>
+                    <input type="text" id="transformValueY" placeholder="Enter value for Y (e.g., 50px, 45deg, 1.5, etc.)">
+                    ` : ''}
+                `;
+            }
+        };
+
+        const updateStyles = () => {
+            let type = transformType.value;
+            let valueX = document.getElementById('transformValueX')?.value || '0';
+            let valueY = document.getElementById('transformValueY')?.value || '0';
+
+            let transformStyle = '';
+            if (type === 'matrix') {
+                const matrixValues = document.getElementById('matrixValues').value || '1, 0, 0, 1, 0, 0';
+                transformStyle = `${type}(${matrixValues})`;
+            } else if (type === 'translate' || type === 'scale' || type === 'skew') {
+                transformStyle = `${type}(${valueX}, ${valueY})`;
+            } else if (type === 'rotate') {
+                transformStyle = `${type}(${valueX})`;
+            }
+
+            exampleBox.style.transform = transformStyle;
+
+            finalCss.innerHTML = `.example-box {<br>
+                &nbsp;&nbsp;transform: ${transformStyle};<br>
+            }`;
+        };
+
+        transformType.addEventListener('change', () => {
+            updateInputs();
+            updateStyles();
+        });
+
+        document.addEventListener('input', updateStyles);
+
+        exampleBox.addEventListener('mouseover', () => {
+            exampleBox.style.transform = 'scale(1.2)';
+        });
+
+        exampleBox.addEventListener('mouseout', () => {
+            updateStyles();
+        });
+
+        updateInputs();
+        updateStyles();
+    </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 10: Borders and Outlines</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+            justify-content: space-between;
+        }
+        .controls {
+            flex: 2;
+            padding: 20px;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+            padding: 20px;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"], input[type="color"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .preview-box {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="border-style">Border Style:</label>
+                <select id="border-style">
+                    <option value="none">none</option>
+                    <option value="solid">solid</option>
+                    <option value="dotted">dotted</option>
+                    <option value="dashed">dashed</option>
+                    <option value="double">double</option>
+                    <option value="groove">groove</option>
+                    <option value="ridge">ridge</option>
+                    <option value="inset">inset</option>
+                    <option value="outset">outset</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="border-width">Border Width:</label>
+                <input type="text" id="border-width" placeholder="Enter width (e.g., 5px)">
+            </div>
+            <div class="control-group">
+                <label for="border-color">Border Color:</label>
+                <input type="color" id="border-color" value="#ff5722">
+            </div>
+            <div class="control-group">
+                <label for="border-radius">Border Radius:</label>
+                <input type="text" id="border-radius" placeholder="Enter radius (e.g., 10px)">
+            </div>
+            <div class="control-group">
+                <label for="outline">Outline:</label>
+                <input type="text" id="outline" placeholder="Enter outline (e.g., 2px solid #000)">
+            </div>
+        </div>
+        <div class="output">
+            <div class="preview-box" id="preview-box">
+                Preview Box
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            /* CSS will be displayed here */
+        </div>
+    </div>
+
+    <script>
+        const previewBox = document.getElementById('preview-box');
+        const cssOutput = document.getElementById('css-output');
+
+        const updatePreviewBox = () => {
+            const borderStyle = document.getElementById('border-style').value;
+            const borderWidth = document.getElementById('border-width').value || '1px';
+            const borderColor = document.getElementById('border-color').value;
+            const borderRadius = document.getElementById('border-radius').value || '0px';
+            const outline = document.getElementById('outline').value || 'none';
+
+            previewBox.style.borderStyle = borderStyle;
+            previewBox.style.borderWidth = borderWidth;
+            previewBox.style.borderColor = borderColor;
+            previewBox.style.borderRadius = borderRadius;
+            previewBox.style.outline = outline;
+
+            const cssText = `
+                .preview-box {
+                    border-style: ${borderStyle};
+                    border-width: ${borderWidth};
+                    border-color: ${borderColor};
+                    border-radius: ${borderRadius};
+                    outline: ${outline};
+                }
+            `;
+            cssOutput.textContent = cssText;
+        };
+
+        document.querySelectorAll('select, input').forEach(input => {
+            input.addEventListener('input', updatePreviewBox);
+        });
+
+        updatePreviewBox();
+    </script>
+</body>
+</html>

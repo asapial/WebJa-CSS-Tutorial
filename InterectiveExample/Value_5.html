@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: Flexbox Basics</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 1200px;
+        }
+        .controls, .output, .css-output {
+            padding: 20px;
+        }
+        .controls {
+            flex: 2;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .flex-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        .flex-item {
+            width: 50px;
+            height: 50px;
+            background-color: #ff5722;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="justify-content">justify-content:</label>
+                <select id="justify-content">
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="center">center</option>
+                    <option value="space-between">space-between</option>
+                    <option value="space-around">space-around</option>
+                    <option value="space-evenly">space-evenly</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <input type="text" id="custom-justify-content" placeholder="Enter custom justify-content" style="display: none;">
+            </div>
+            <div class="control-group">
+                <label for="align-items">align-items:</label>
+                <select id="align-items">
+                    <option value="stretch">stretch</option>
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="center">center</option>
+                    <option value="baseline">baseline</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <input type="text" id="custom-align-items" placeholder="Enter custom align-items" style="display: none;">
+            </div>
+        </div>
+        <div class="output">
+            <div class="flex-container" id="flex-container">
+                <div class="flex-item">1</div>
+                <div class="flex-item">2</div>
+                <div class="flex-item">3</div>
+                <div class="flex-item">4</div>
+                <div class="flex-item">5</div>
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            <h3>Applied CSS:</h3>
+            <pre id="css-code"></pre>
+        </div>
+    </div>
+
+    <script>
+        const justifyContentSelect = document.getElementById('justify-content');
+        const customJustifyContentInput = document.getElementById('custom-justify-content');
+        const alignItemsSelect = document.getElementById('align-items');
+        const customAlignItemsInput = document.getElementById('custom-align-items');
+        const flexContainer = document.getElementById('flex-container');
+        const cssCode = document.getElementById('css-code');
+
+        function updateExample() {
+            const styles = {
+                justifyContent: getInputValue(justifyContentSelect, customJustifyContentInput),
+                alignItems: getInputValue(alignItemsSelect, customAlignItemsInput),
+            };
+
+            flexContainer.style.justifyContent = styles.justifyContent;
+            flexContainer.style.alignItems = styles.alignItems;
+
+            updateCSSCode(styles);
+        }
+
+        function getInputValue(select, input) {
+            return select.value === 'custom' ? input.value : select.value;
+        }
+
+        function updateCSSCode(styles) {
+            cssCode.textContent = `
+.flex-container {
+    display: flex;
+    justify-content: ${styles.justifyContent};
+    align-items: ${styles.alignItems};
+}`;
+        }
+
+        justifyContentSelect.addEventListener('change', () => {
+            customJustifyContentInput.style.display = justifyContentSelect.value === 'custom' ? 'block' : 'none';
+            updateExample();
+        });
+        customJustifyContentInput.addEventListener('input', updateExample);
+
+        alignItemsSelect.addEventListener('change', () => {
+            customAlignItemsInput.style.display = alignItemsSelect.value === 'custom' ? 'block' : 'none';
+            updateExample();
+        });
+        customAlignItemsInput.addEventListener('input', updateExample);
+
+        updateExample();
+    </script>
+</body>
+</html>

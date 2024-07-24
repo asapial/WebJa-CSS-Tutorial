@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 35: Accessibility in CSS</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+        }
+        .controls, .output, .css-output {
+            padding: 20px;
+        }
+        .controls {
+            flex: 2;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+            position: relative;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .example-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .example {
+            padding: 20px;
+            border-radius: 5px;
+            background-color: var(--bg-color, #4caf50);
+            color: var(--text-color, #fff);
+            outline: none;
+        }
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: -999px;
+        }
+        .skip-link:focus {
+            left: 10px;
+            top: 10px;
+            background-color: #ff5722;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="example-type">Example Type:</label>
+                <select id="example-type">
+                    <option value="color-contrast">Accessible Color Contrast</option>
+                    <option value="focus-states">Focus States</option>
+                    <option value="skip-links">Skip to Content Links</option>
+                    <option value="aria-roles">ARIA Roles and Attributes</option>
+                    <option value="screen-readers">CSS for Screen Readers</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <input type="text" id="custom-css" placeholder="Enter custom CSS" style="display: none;">
+            </div>
+        </div>
+        <div class="output">
+            <div class="example-container" id="example-container">
+                <a href="#main-content" class="skip-link" id="skip-link">Skip to content</a>
+                <div class="example" id="example">Example</div>
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            <h3>Applied CSS:</h3>
+            <pre id="css-code"></pre>
+        </div>
+    </div>
+
+    <script>
+        const exampleTypeSelect = document.getElementById('example-type');
+        const customCssInput = document.getElementById('custom-css');
+        const exampleContainer = document.getElementById('example-container');
+        const example = document.getElementById('example');
+        const cssCode = document.getElementById('css-code');
+
+        const defaultExamples = {
+            'color-contrast': '--bg-color: #ff5722; --text-color: #fff;',
+            'focus-states': '--bg-color: #4caf50; --text-color: #fff; --focus-bg-color: #ff5722; --focus-text-color: #fff;',
+            'skip-links': '--bg-color: #4caf50; --text-color: #fff;',
+            'aria-roles': '--bg-color: #4caf50; --text-color: #fff;',
+            'screen-readers': '--bg-color: #4caf50; --text-color: #fff;'
+        };
+
+        function updateExample() {
+            const exampleType = exampleTypeSelect.value;
+            let cssText = '';
+
+            if (exampleType === 'custom') {
+                cssText = customCssInput.value;
+            } else {
+                cssText = defaultExamples[exampleType];
+            }
+
+            exampleContainer.style.cssText = cssText;
+            updateCSSCode(cssText);
+
+            if (exampleType === 'focus-states') {
+                exampleContainer.innerHTML = '<button class="example" id="example">Example</button>';
+                document.querySelector('.example').addEventListener('focus', (e) => {
+                    e.target.style.backgroundColor = '#ff5722';
+                    e.target.style.color = '#fff';
+                });
+            } else if (exampleType === 'skip-links') {
+                exampleContainer.innerHTML = '<a href="#main-content" class="skip-link" id="skip-link">Skip to content</a><div class="example" id="example">Example</div>';
+            } else if (exampleType === 'aria-roles') {
+                exampleContainer.innerHTML = '<div class="example" id="example" role="alert">Example with ARIA role</div>';
+            } else if (exampleType === 'screen-readers') {
+                exampleContainer.innerHTML = '<div class="example" id="example" aria-hidden="true">Hidden from screen readers</div>';
+            } else {
+                exampleContainer.innerHTML = '<div class="example" id="example">Example</div>';
+            }
+        }
+
+        function updateCSSCode(cssText) {
+            cssCode.textContent = `:root {\n    ${cssText.replace(/; /g, ';\n    ').replace(/;/g, ';\n')}\n}`;
+        }
+
+        exampleTypeSelect.addEventListener('change', () => {
+            customCssInput.style.display = exampleTypeSelect.value === 'custom' ? 'block' : 'none';
+            updateExample();
+        });
+        customCssInput.addEventListener('input', updateExample);
+
+        updateExample();
+    </script>
+</body>
+</html>

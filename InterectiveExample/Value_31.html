@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 31: Content and Media Queries</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 1200px;
+        }
+        .controls {
+            flex: 2;
+            padding: 20px;
+        }
+        .output {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            height: 300px;
+        }
+        .css-output {
+            flex: 1;
+            margin-left: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            height: 300px;
+            overflow: auto;
+            padding: 20px;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .content-box {
+            /* width: 100px; */
+            /* height: 100px; */
+            background-color: #ff5722;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="media-query">Select Media Query:</label>
+                <select id="media-query">
+                    <option value="min-width">min-width</option>
+                    <option value="max-width">max-width</option>
+                    <option value="min-height">min-height</option>
+                    <option value="max-height">max-height</option>
+                    <option value="orientation">Orientation</option>
+                    <option value="aspect-ratio">Aspect Ratio</option>
+                    <option value="dark-mode">Dark Mode</option>
+                </select>
+            </div>
+            <div class="control-group" id="custom-value-group">
+                <label for="custom-value">Enter Custom Value:</label>
+                <input type="text" id="custom-value" placeholder="e.g., 600px or 16/9">
+            </div>
+        </div>
+        <div class="output">
+            <div class="content-box" id="content-box">
+                Box
+            </div>
+        </div>
+        <div class="css-output" id="css-output">
+            .content-box {
+                width: 100px;
+                height: 100px;
+                background-color: #ff5722;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.3s ease;
+            }
+        </div>
+    </div>
+
+    <script>
+        const mediaQuerySelect = document.getElementById('media-query');
+        const customValueInput = document.getElementById('custom-value');
+        const contentBox = document.getElementById('content-box');
+        const cssOutput = document.getElementById('css-output');
+        const customValueGroup = document.getElementById('custom-value-group');
+
+        function updateCSS() {
+            const mediaQuery = mediaQuerySelect.value;
+            const customValue = customValueInput.value;
+            let cssRule = '';
+
+            switch (mediaQuery) {
+                case 'min-width':
+                    cssRule = `@media (min-width: ${customValue}) { .content-box { width: 200px; height: 200px; background-color: #4caf50; } }`;
+                    break;
+                case 'max-width':
+                    cssRule = `@media (max-width: ${customValue}) { .content-box { width: 200px; height: 200px; background-color: #2196f3; } }`;
+                    break;
+                case 'min-height':
+                    cssRule = `@media (min-height: ${customValue}) { .content-box { width: 200px; height: 200px; background-color: #ff9800; } }`;
+                    break;
+                case 'max-height':
+                    cssRule = `@media (max-height: ${customValue}) { .content-box { width: 200px; height: 200px; background-color: #e91e63; } }`;
+                    break;
+                case 'orientation':
+                    cssRule = `@media (orientation: ${customValue}) { .content-box { width: 200px; height: 200px; background-color: #9c27b0; } }`;
+                    break;
+                case 'aspect-ratio':
+                    cssRule = `@media (min-aspect-ratio: ${customValue}) { .content-box { width: 200px; height: 200px; background-color: #673ab7; } }`;
+                    break;
+                case 'dark-mode':
+                    cssRule = `@media (prefers-color-scheme: dark) { .content-box { width: 200px; height: 200px; background-color: #607d8b; } }`;
+                    break;
+            }
+
+            const styleSheet = document.styleSheets[0];
+            if (styleSheet.cssRules.length > 8) {
+                styleSheet.deleteRule(8);
+            }
+            styleSheet.insertRule(cssRule, styleSheet.cssRules.length);
+
+            cssOutput.innerText = `.content-box {
+                width: 100px;
+                height: 100px;
+                background-color: #ff5722;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.3s ease;
+            }\n\n${cssRule}`;
+        }
+
+        mediaQuerySelect.addEventListener('change', () => {
+            const selectedValue = mediaQuerySelect.value;
+            if (selectedValue === 'dark-mode') {
+                customValueGroup.classList.add('hidden');
+            } else {
+                customValueGroup.classList.remove('hidden');
+            }
+            updateCSS();
+        });
+        customValueInput.addEventListener('input', updateCSS);
+    </script>
+</body>
+</html>
